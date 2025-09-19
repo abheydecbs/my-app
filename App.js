@@ -4,7 +4,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { StatusBar } from 'expo-status-bar';
 
 import HomeScreen from './screens/HomeScreen';
-import DetailScreen from './screens/DetailScreen';
+import StackComponent from './components/StackComponent';
 import SettingsScreen from './screens/SettingsScreen';
 
 const Tab = createBottomTabNavigator();
@@ -35,10 +35,11 @@ export default function App() {
         />
         <Tab.Screen 
           name="Details" 
-          component={DetailScreen} 
+          component={StackComponent} 
           options={{
             tabBarLabel: 'Details',
             headerTitle: 'Details',
+            headerShown: false,
           }}
         />
         <Tab.Screen 

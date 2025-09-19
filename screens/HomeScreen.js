@@ -3,7 +3,6 @@ import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import FirstComponent from '../components/FirstComponent';
 import PropsComponent from '../components/PropsComponent';
 import InputComponent from '../components/InputComponent';
-import ButtonComponent from '../components/ButtonComponent';
 import AssetComponent from '../components/AssetComponent';
 
 const HomeScreen = () => {
@@ -25,11 +24,7 @@ const HomeScreen = () => {
       <View style={styles.componentContainer}>
         <InputComponent />
       </View>
-      
-      <View style={styles.componentContainer}>
-        <ButtonComponent />
-      </View>
-      
+
       <View style={styles.componentContainer}>
         <AssetComponent source={require('../assets/favicon.png')} />
       </View>
