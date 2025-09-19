@@ -1,41 +1,57 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, FlatList } from 'react-native';
 import { CARS } from '../data/const';
+import { Colors, Typography, Shadows } from '../GlobalStyles';
 
-// FlatListScreen demonstrates the FlatList component
+// FlatListScreen demonstrates the FlatList component with professional design
 // FlatList is optimized for rendering large lists efficiently
 // It only renders visible items and recycles components for better performance
 export default function FlatListScreen() {
+  
+  // Professional renderItem function with card design
+  const renderCarItem = ({ item, index }) => {
+    return (
+      <View style={styles.carCard}>
+        <View style={styles.carIndex}>
+          <Text style={styles.indexText}>{index + 1}</Text>
+        </View>
+        <View style={styles.carContent}>
+          <Text style={styles.carName}>{item}</Text>
+          <Text style={styles.carSubtext}>Vehicle #{index + 1}</Text>
+        </View>
+      </View>
+    );
+  };
+
   return (
     <View style={styles.container}>
-      {/* Screen title explaining what this screen demonstrates */}
-      <Text style={{ fontSize: 20, textAlign: 'center', padding: 40 }}>
-        1 Mine biler - Flatlist
-      </Text>
+      {/* Professional header section */}
+      <View style={styles.header}>
+        <Text style={styles.title}>My Car Collection</Text>
+        <Text style={styles.subtitle}>
+          FlatList optimized rendering demonstration
+        </Text>
+      </View>
       
-      {/* Container for the FlatList with custom styling */}
-      <View
-        style={{
-          height: 150,                    // Fixed height for the list container
-          backgroundColor: 'lightgrey',   // Light gray background
-          borderRadius: 10,               // Rounded corners
-          width: '80%',                   // 80% of parent width
-        }}
-      >
-        {/* FlatList component for efficient list rendering */}
+      {/* Professional list container with proper spacing */}
+      <View style={styles.listContainer}>
         <FlatList
-          data={CARS}                     // Array of data to render
-          renderItem={({ item, index }) => {
-            // Function that defines how each item should be rendered
-            return (
-              <Text style={{ fontSize: 15, textAlign: 'center', padding: 10 }}>
-                {index + 1}: {item}       {/* Display index number and car name */}
-              </Text>
-            );
-          }}
-          keyExtractor={(item, index) => index.toString()} // Unique key for each item
+          data={CARS}
+          renderItem={renderCarItem}
+          keyExtractor={(item, index) => `car-${index}`}
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={styles.listContent}
+          ItemSeparatorComponent={() => <View style={styles.separator} />}
         />
       </View>
+      
+      {/* Professional footer with info */}
+      <View style={styles.footer}>
+        <Text style={styles.footerText}>
+          Total vehicles: {CARS.length}
+        </Text>
+      </View>
+      
       <StatusBar style="auto" />
     </View>
   );
@@ -44,8 +60,84 @@ export default function FlatListScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: Colors.background.default,
+    paddingHorizontal: 20,
+  },
+  header: {
+    paddingVertical: 24,
+    alignItems: 'center',
+  },
+  title: {
+    fontSize: Typography.fontSizes['2xl'],
+    fontWeight: Typography.fontWeights.bold,
+    color: Colors.text.primary,
+    marginBottom: 8,
+  },
+  subtitle: {
+    fontSize: Typography.fontSizes.base,
+    color: Colors.text.secondary,
+    textAlign: 'center',
+  },
+  listContainer: {
+    flex: 1,
+    backgroundColor: Colors.background.paper,
+    borderRadius: 12,
+    padding: 16,
+    ...Shadows.medium,
+  },
+  listContent: {
+    paddingVertical: 8,
+  },
+  carCard: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: Colors.background.paper,
+    borderRadius: 8,
+    padding: 16,
+    ...Shadows.small,
+    borderLeftWidth: 3,
+    borderLeftColor: Colors.primary.main,
+  },
+  carIndex: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: Colors.primary.light,
     alignItems: 'center',
     justifyContent: 'center',
+    marginRight: 16,
+  },
+  indexText: {
+    fontSize: Typography.fontSizes.sm,
+    fontWeight: Typography.fontWeights.bold,
+    color: Colors.primary.main,
+  },
+  carContent: {
+    flex: 1,
+  },
+  carName: {
+    fontSize: Typography.fontSizes.lg,
+    fontWeight: Typography.fontWeights.semibold,
+    color: Colors.text.primary,
+    marginBottom: 4,
+  },
+  carSubtext: {
+    fontSize: Typography.fontSizes.sm,
+    color: Colors.text.secondary,
+  },
+  separator: {
+    height: 12,
+  },
+  footer: {
+    paddingVertical: 16,
+    alignItems: 'center',
+    borderTopWidth: 1,
+    borderTopColor: Colors.neutral.gray200,
+    marginTop: 16,
+  },
+  footerText: {
+    fontSize: Typography.fontSizes.sm,
+    color: Colors.text.secondary,
+    fontWeight: Typography.fontWeights.medium,
   },
 });
