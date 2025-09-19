@@ -16,9 +16,9 @@ import { Ionicons } from '@expo/vector-icons';
 import { GET_USERS_URL } from '../data/const';
 import { Colors, Typography, Shadows } from '../GlobalStyles';
 
-// FetchListScreen demonstrates API integration with professional UI design
+// UserListScreen demonstrates API integration with professional UI design
 // Shows how to fetch data from external APIs, manage loading states, and handle user input
-export default function FetchListScreen() {
+export default function UserListScreen() {
   // State variables using React hooks
   const [user, setUser] = useState([]);        // Stores the fetched user data
   const [msg, setMsg] = useState('');          // Stores status messages (loading, errors)
@@ -31,8 +31,11 @@ export default function FetchListScreen() {
       setLoading(true);                        // Start loading
       setMsg('');                              // Clear previous messages
       
+      // Use default of 5 if amount is empty or invalid
+      const userCount = amount || 5;
+      
       // Fetch data from randomuser.me API with specified number of results
-      const response = await fetch(GET_USERS_URL + amount);
+      const response = await fetch(GET_USERS_URL + userCount);
       const data = await response.json();      // Parse JSON response
       setUser(data.results);                   // Store user data in state
     } catch (error) {
@@ -107,14 +110,20 @@ export default function FetchListScreen() {
             />
             <TextInput
               style={styles.textInput}
-              placeholder="Enter number (1-10)"
-              value={amount.toString()}
+              placeholder="Enter number (leave empty for 5)"
+              value={amount ? amount.toString() : ''}
               onChangeText={(text) => {
-                const num = parseInt(text) || 1;
-                setAmount(Math.min(Math.max(num, 1), 10)); // Limit between 1-10
+                if (text === '') {
+                  setAmount(''); // Allow empty string
+                } else {
+                  const num = parseInt(text);
+                  if (!isNaN(num) && num > 0) {
+                    setAmount(num); // No upper limit
+                  }
+                }
               }}
               keyboardType="numeric"
-              maxLength={2}
+              maxLength={3}
             />
           </View>
         </View>

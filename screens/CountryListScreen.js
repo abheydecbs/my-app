@@ -4,10 +4,10 @@ import { Ionicons } from '@expo/vector-icons';
 import { COUNTRIES } from '../data/const';
 import { Colors, Typography, Shadows } from '../GlobalStyles';
 
-// ArrayListScreen demonstrates the JavaScript array.map() method with professional design
+// CountryListScreen demonstrates the JavaScript array.map() method with professional design
 // This is the traditional way to render lists in React/React Native
 // Good for smaller lists, but FlatList is better for large datasets
-export default function ArrayListScreen() {
+export default function CountryListScreen() {
   
   // Professional country item renderer
   const renderCountryItem = (country, index) => {

@@ -2,86 +2,146 @@ import { StyleSheet } from 'react-native';
 
 // Professional Color Palette - Modern Blue Theme
 const Colors = {
-  // Primary Colors
-  primary: '#2196F3',           // Professional Blue
-  primaryDark: '#1976D2',       // Darker Blue
-  primaryLight: '#BBDEFB',      // Light Blue
+  // Primary Brand Colors
+  primary: {
+    main: '#2196F3',            // Professional Blue
+    dark: '#1976D2',            // Darker Blue
+    light: '#BBDEFB',           // Light Blue
+  },
   
   // Secondary Colors
-  secondary: '#FF5722',         // Orange Accent
-  secondaryLight: '#FFCCBC',    // Light Orange
+  secondary: {
+    main: '#FF5722',            // Orange Accent
+    light: '#FFCCBC',           // Light Orange
+    dark: '#D84315',            // Dark Orange
+  },
   
-  // Neutral Colors
-  background: '#F8F9FA',        // Light Gray Background
-  surface: '#FFFFFF',           // White Surface
-  card: '#FFFFFF',              // Card Background
+  // Background Colors
+  background: {
+    default: '#F8F9FA',         // Light Gray Background
+    paper: '#FFFFFF',           // White Surface
+  },
   
   // Text Colors
-  textPrimary: '#212121',       // Dark Gray Text
-  textSecondary: '#757575',     // Medium Gray Text
-  textLight: '#BDBDBD',         // Light Gray Text
+  text: {
+    primary: '#212121',         // Dark Gray Text
+    secondary: '#757575',       // Medium Gray Text
+    inverse: '#FFFFFF',         // White Text
+  },
+  
+  // Neutral Colors
+  neutral: {
+    gray100: '#F5F5F5',
+    gray200: '#E0E0E0',
+    gray300: '#BDBDBD',
+    gray400: '#9E9E9E',
+    gray500: '#757575',
+    gray600: '#616161',
+    gray700: '#424242',
+  },
   
   // Status Colors
-  success: '#4CAF50',           // Green
-  warning: '#FF9800',           // Orange
-  error: '#F44336',             // Red
+  success: {
+    main: '#4CAF50',            // Green
+    light: '#C8E6C9',           // Light Green
+    dark: '#2E7D32',            // Dark Green
+  },
+  warning: {
+    main: '#FF9800',            // Orange
+    light: '#FFE0B2',           // Light Orange
+    dark: '#F57C00',            // Dark Orange
+  },
+  error: {
+    main: '#F44336',            // Red
+    light: '#FFCDD2',           // Light Red
+    dark: '#D32F2F',            // Dark Red
+  },
+  info: {
+    main: '#2196F3',            // Blue
+    light: '#BBDEFB',           // Light Blue
+    dark: '#1976D2',            // Dark Blue
+  },
   
-  // Borders and Dividers
+  // Legacy flat structure (for backwards compatibility)
+  card: '#FFFFFF',              // Card Background
   border: '#E0E0E0',            // Light Border
   divider: '#EEEEEE',           // Divider Line
-  
-  // Shadows
   shadow: '#000000',            // Shadow Color
+  textPrimary: '#212121',       // For legacy references
+  textSecondary: '#757575',     // For legacy references
+  textLight: '#BDBDBD',         // For legacy references
+  background: '#F8F9FA',        // For legacy references
+  surface: '#FFFFFF',           // For legacy references
 };
 
 // Professional Typography Scale
 const Typography = {
-  // Headers
+  // Font Sizes
+  fontSizes: {
+    xs: 12,
+    sm: 14,
+    base: 16,
+    lg: 18,
+    xl: 20,
+    '2xl': 24,
+    '3xl': 32,
+    '4xl': 40,
+  },
+  
+  // Font Weights
+  fontWeights: {
+    normal: '400',
+    medium: '500',
+    semibold: '600',
+    bold: '700',
+  },
+  
+  // Headers (legacy support)
   h1: {
     fontSize: 32,
     fontWeight: 'bold',
     lineHeight: 40,
-    color: Colors.textPrimary,
+    color: Colors.text.primary,
   },
   h2: {
     fontSize: 24,
     fontWeight: 'bold',
     lineHeight: 32,
-    color: Colors.textPrimary,
+    color: Colors.text.primary,
   },
   h3: {
     fontSize: 20,
     fontWeight: '600',
     lineHeight: 28,
-    color: Colors.textPrimary,
+    color: Colors.text.primary,
   },
   
-  // Body Text
+  // Body Text (legacy support)
   body1: {
     fontSize: 16,
     fontWeight: 'normal',
     lineHeight: 24,
-    color: Colors.textPrimary,
+    color: Colors.text.primary,
   },
   body2: {
     fontSize: 14,
     fontWeight: 'normal',
     lineHeight: 20,
-    color: Colors.textSecondary,
+    color: Colors.text.secondary,
   },
   
-  // Labels and Captions
+  // Labels and Captions (legacy support)
   caption: {
     fontSize: 12,
     fontWeight: 'normal',
     lineHeight: 16,
-    color: Colors.textLight,
+    color: Colors.text.secondary,
   },
   label: {
     fontSize: 14,
     fontWeight: '500',
     lineHeight: 20,
-    color: Colors.textSecondary,
+    color: Colors.text.secondary,
   },
 };
 

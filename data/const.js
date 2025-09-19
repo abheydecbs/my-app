@@ -6,7 +6,7 @@ export const CARS = [
   "Audi",
   "BMW", 
   "Tesla",
-  "Alfa oreo",
+  "Alfa Romeo",
   "Ford",
   "Kia",
   "Rover",
@@ -21,7 +21,7 @@ export const CARS = [
 
 // Array of countries - used to demonstrate array.map() method
 // Shows how to iterate over arrays and render components
-export const COUNTRIES = ["Denmark", "England", "Spanien", "Italien"];
+export const COUNTRIES = ["Denmark", "England", "Spain", "Italy"];
 
 // API endpoint for fetching random user data
 // Used with fetch() to demonstrate API integration and dynamic data loading

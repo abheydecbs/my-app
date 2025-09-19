@@ -5,12 +5,11 @@ import { StatusBar } from 'expo-status-bar';
 import { Ionicons } from '@expo/vector-icons';
 
 // Import all screen components for the tab navigator
-import ArrayListScreen from './screens/ArrayListScreen';
-import FetchListScreen from './screens/FetchListScreen';
-import FlatListScreen from './screens/FlatListScreen';
+import CarListScreen from './screens/CarListScreen';
+import CountryListScreen from './screens/CountryListScreen';
+import UserListScreen from './screens/UserListScreen';
 import HomeScreen from './screens/HomeScreen';
-import StackComponent from './components/StackComponent';
-import SettingsScreen from './screens/SettingsScreen';
+import SettingsStackNavigator from './navigation/SettingsStackNavigator';
 
 // Import professional styling system
 import { Colors, Typography, Shadows } from './GlobalStyles';
@@ -26,17 +25,14 @@ const getTabIcon = (routeName, focused, color, size) => {
     case 'Home':
       iconName = focused ? 'home' : 'home-outline';
       break;
-    case 'Flat List':
-      iconName = focused ? 'list' : 'list-outline';
+    case 'Car List':
+      iconName = focused ? 'car-sport' : 'car-sport-outline';
       break;
-    case 'Array List':
-      iconName = focused ? 'apps' : 'apps-outline';
+    case 'Country List':
+      iconName = focused ? 'map' : 'map-outline';
       break;
-    case 'Fetch List':
-      iconName = focused ? 'cloud-download' : 'cloud-download-outline';
-      break;
-    case 'Details':
-      iconName = focused ? 'information-circle' : 'information-circle-outline';
+    case 'User List':
+      iconName = focused ? 'people' : 'people-outline';
       break;
     case 'Settings':
       iconName = focused ? 'settings' : 'settings-outline';
@@ -98,53 +94,44 @@ export default function App() {
           component={HomeScreen} 
           options={{
             tabBarLabel: 'Home',
-            headerTitle: 'Component Showcase',
+            headerTitle: 'Home',
           }}
         />
-        {/* Flat List Tab - Demonstrates FlatList component with static array data */}
+        {/* Car List Tab - Demonstrates FlatList component with static array data */}
         <Tab.Screen 
-          name="Flat List" 
-          component={FlatListScreen} 
+          name="Car List" 
+          component={CarListScreen} 
           options={{
-            tabBarLabel: 'Flat List',
-            headerTitle: 'FlatList Demo',
+            tabBarLabel: 'Car List',
+            headerTitle: 'Car List',
           }}
         />
-        {/* Array List Tab - Shows array.map() method for rendering lists */}
+        {/* Country List Tab - Shows array.map() method for rendering lists */}
         <Tab.Screen 
-          name="Array List" 
-          component={ArrayListScreen} 
+          name="Country List" 
+          component={CountryListScreen} 
           options={{
-            tabBarLabel: 'Array List',
-            headerTitle: 'Array Mapping',
+            tabBarLabel: 'Country List',
+            headerTitle: 'Country List',
           }}
         />
-        {/* Fetch List Tab - Demonstrates API calls and dynamic data fetching */}
+        {/* User List Tab - Demonstrates API calls and dynamic data fetching */}
         <Tab.Screen 
-          name="Fetch List" 
-          component={FetchListScreen} 
+          name="User List" 
+          component={UserListScreen} 
           options={{
-            tabBarLabel: 'Fetch List',
-            headerTitle: 'API Data Fetch',
+            tabBarLabel: 'User List',
+            headerTitle: 'User List',
           }}
         />
-        {/* Details Tab - Contains Stack Navigator for nested navigation */}
-        <Tab.Screen 
-          name="Details" 
-          component={StackComponent} 
-          options={{
-            tabBarLabel: 'Details',
-            headerTitle: 'Detail Views',
-            headerShown: false, // Hide header since Stack Navigator has its own headers
-          }}
-        />
-        {/* Settings Tab - Simple settings screen */}
+        {/* Settings Tab - App settings with user profile navigation */}
         <Tab.Screen 
           name="Settings" 
-          component={SettingsScreen} 
+          component={SettingsStackNavigator} 
           options={{
             tabBarLabel: 'Settings',
-            headerTitle: 'App Settings',
+            headerTitle: 'Settings',
+            headerShown: false, // Hide header since Stack Navigator has its own headers
           }}
         />
       </Tab.Navigator>

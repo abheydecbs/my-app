@@ -3,10 +3,10 @@ import { StyleSheet, Text, View, FlatList } from 'react-native';
 import { CARS } from '../data/const';
 import { Colors, Typography, Shadows } from '../GlobalStyles';
 
-// FlatListScreen demonstrates the FlatList component with professional design
+// CarListScreen demonstrates the FlatList component with professional design
 // FlatList is optimized for rendering large lists efficiently
 // It only renders visible items and recycles components for better performance
-export default function FlatListScreen() {
+export default function CarListScreen() {
   
   // Professional renderItem function with card design
   const renderCarItem = ({ item, index }) => {
