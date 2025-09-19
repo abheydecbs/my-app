@@ -6,13 +6,13 @@ import { Button, Text, View } from 'react-native';
 // Når knappen trykkes, skal teksten opdatere sig selv i overensstemmelse hermed
 
 const ButtonComponent = () => {
-    // Opret en state til at tracke, om knappen er trykket  eller ej
-    const [isPressed, setIsPressed] = useState(false);
+// Opret en state til at tracke, om knappen er trykket  eller ej
+const [isPressed, setIsPressed] = useState(false);
 
     // Funktion til at håndtere knaptryk
-    const handlePress = () => {
-        setIsPressed(!isPressed);
-    }
+const handlePress = () => {
+    setIsPressed(!isPressed);
+}
 
     return (
         <View>
