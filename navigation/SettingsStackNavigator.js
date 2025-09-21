@@ -36,7 +36,11 @@ export default function SettingsStackNavigator() {
         name="Settings Screen" 
         component={SettingsScreen}
         options={{
+<<<<<<< Updated upstream
           headerTitle: 'Settings',
+=======
+          headerTitle: 'App Settings',
+>>>>>>> Stashed changes
         }}
       />
       {/* User profile screen accessible from settings */}
