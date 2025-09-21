@@ -164,7 +164,8 @@ export default function UserListScreen() {
             <ScrollView 
               style={styles.scrollView}
               contentContainerStyle={styles.scrollContent}
-              showsVerticalScrollIndicator={false}
+              showsVerticalScrollIndicator={true}
+              nestedScrollEnabled={true}
             >
               {user.map((person, index) => renderUserCard(person, index))}
             </ScrollView>
@@ -273,6 +274,7 @@ const styles = StyleSheet.create({
   },
   scrollContent: {
     paddingVertical: 8,
+    flexGrow: 1,
   },
   userCard: {
     flexDirection: 'row',
