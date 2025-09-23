@@ -113,14 +113,13 @@ export default function ReviewsScreen() {
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <View style={styles.container}>
         {/* Professional header section */}
+        {/* Professional header */}
         <View style={styles.header}>
-          <Text style={styles.title}>Coffee Reviews</Text>
+          <Text style={styles.title}>⭐ Coffee Reviews</Text>
           <Text style={styles.subtitle}>
-            Real reviews from coffee enthusiasts
+            ☕ What coffee lovers are saying
           </Text>
-        </View>
-        
-        {/* Professional input section */}
+        </View>        {/* Professional input section */}
         <View style={styles.inputSection}>
           <Text style={styles.inputLabel}>Number of reviews to load:</Text>
           <View style={styles.inputContainer}>
@@ -301,13 +300,13 @@ const styles = StyleSheet.create({
   reviewCard: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: Colors.background.paper,
+    backgroundColor: '#FFF8E1', // Warm coffee cream
     borderRadius: 12,
     padding: 16,
     marginBottom: 12,
     ...Shadows.small,
     borderLeftWidth: 3,
-    borderLeftColor: Colors.success.main,
+    borderLeftColor: Colors.primary.main, // Coffee brown
   },
   profileImage: {
     width: 60,
@@ -361,7 +360,7 @@ const styles = StyleSheet.create({
     width: 32,
     height: 32,
     borderRadius: 16,
-    backgroundColor: Colors.success.light,
+    backgroundColor: Colors.primary.light, // Coffee cream
     alignItems: 'center',
     justifyContent: 'center',
   },

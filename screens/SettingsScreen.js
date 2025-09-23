@@ -14,7 +14,7 @@ const SettingsScreen = ({ navigation }) => {
   const settingsData = [
     {
       id: 1,
-      title: 'Account',
+      title: '👤 Account',
       items: [
         {
           id: 'profile',
@@ -35,12 +35,12 @@ const SettingsScreen = ({ navigation }) => {
     },
     {
       id: 2,
-      title: 'Preferences',
+      title: '☕ Preferences',
       items: [
         {
           id: 'notifications',
-          title: 'Push Notifications',
-          subtitle: 'Get notified about updates',
+          title: 'Coffee Notifications',
+          subtitle: 'Get notified about new coffee shops & deals',
           icon: 'notifications-outline',
           type: 'toggle',
           value: notifications,
@@ -57,8 +57,8 @@ const SettingsScreen = ({ navigation }) => {
         },
         {
           id: 'autosync',
-          title: 'Auto Sync',
-          subtitle: 'Automatically sync your data',
+          title: 'Auto Sync Coffee Data',
+          subtitle: 'Automatically sync your coffee preferences',
           icon: 'sync-outline',
           type: 'toggle',
           value: autoSync,
@@ -66,8 +66,8 @@ const SettingsScreen = ({ navigation }) => {
         },
         {
           id: 'location',
-          title: 'Location Services',
-          subtitle: 'Allow location access',
+          title: 'Location for Coffee Shops',
+          subtitle: 'Find nearby coffee shops',
           icon: 'location-outline',
           type: 'toggle',
           value: location,
@@ -77,7 +77,7 @@ const SettingsScreen = ({ navigation }) => {
     },
     {
       id: 3,
-      title: 'Support',
+      title: '🆘 Support',
       items: [
         {
           id: 'help',
@@ -176,9 +176,9 @@ const SettingsScreen = ({ navigation }) => {
             color={Colors.primary.main} 
           />
         </View>
-        <Text style={styles.title}>App Settings</Text>
+        <Text style={styles.title}>⚙️ App Settings</Text>
         <Text style={styles.subtitle}>
-          Customize your app experience and preferences
+          ☕ Customize your coffee app experience and preferences
         </Text>
       </View>
 
@@ -189,9 +189,9 @@ const SettingsScreen = ({ navigation }) => {
 
       {/* Professional footer */}
       <View style={styles.footer}>
-        <Text style={styles.footerText}>Version 1.0.0</Text>
+        <Text style={styles.footerText}>☕ Coffee Connect v1.0.0</Text>
         <Text style={styles.footerSubtext}>
-          Built with React Native & Expo
+          Built with React Native & Expo ☕
         </Text>
       </View>
     </ScrollView>
@@ -252,6 +252,9 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.background.paper,
     borderRadius: 12,
     ...Shadows.small,
+    borderWidth: 1,
+    borderColor: Colors.neutral.gray200,
+    overflow: 'hidden', // To ensure rounded corners work with item backgrounds
   },
   settingItem: {
     flexDirection: 'row',
@@ -259,6 +262,7 @@ const styles = StyleSheet.create({
     padding: 16,
     borderBottomWidth: 1,
     borderBottomColor: Colors.neutral.gray200,
+    backgroundColor: '#FFF8E1', // Warm coffee cream
   },
   settingIcon: {
     width: 40,

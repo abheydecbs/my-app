@@ -8,12 +8,12 @@ import { Colors, Typography, Shadows } from '../../GlobalStyles';
 export default function UserProfileScreen({ navigation }) {
   // User profile state
   const [profile, setProfile] = useState({
-    firstName: 'Alexander',
-    lastName: 'Anderson',
-    email: 'alexander@example.com',
-    phone: '+45 12 34 56 78',
+    firstName: 'Alexander Bak',
+    lastName: 'Heyde',
+    email: 'alhe20ad@student.cbs.dk',
+    phone: '+45 41 42 36 52',
     location: 'Copenhagen, Denmark',
-    bio: 'React Native developer passionate about creating beautiful mobile applications.',
+    bio: 'Coffee enthusiast and React Native developer passionate about creating beautiful coffee discovery apps.',
     joinDate: 'September 2025',
     notifications: true,
     darkMode: false,
@@ -33,9 +33,9 @@ export default function UserProfileScreen({ navigation }) {
             <Ionicons name="checkmark-circle" size={20} color={Colors.success.main} />
           </View>
         </View>
-        <Text style={styles.userName}>{profile.firstName} {profile.lastName}</Text>
+        <Text style={styles.userName}>☕ {profile.firstName} {profile.lastName}</Text>
         <Text style={styles.userEmail}>{profile.email}</Text>
-        <Text style={styles.joinDate}>Member since {profile.joinDate}</Text>
+        <Text style={styles.joinDate}>☕ Coffee lover since {profile.joinDate}</Text>
       </View>
     );
   };
@@ -140,24 +140,6 @@ export default function UserProfileScreen({ navigation }) {
             <Text style={styles.fieldValue}>{profile.language}</Text>
           </View>
         </>
-      ))}
-
-      {/* Account Statistics */}
-      {renderInfoCard('Account Statistics', 'stats-chart-outline', (
-        <View style={styles.statsContainer}>
-          <View style={styles.statItem}>
-            <Text style={styles.statNumber}>42</Text>
-            <Text style={styles.statLabel}>Components Used</Text>
-          </View>
-          <View style={styles.statItem}>
-            <Text style={styles.statNumber}>128</Text>
-            <Text style={styles.statLabel}>Screens Viewed</Text>
-          </View>
-          <View style={styles.statItem}>
-            <Text style={styles.statNumber}>15</Text>
-            <Text style={styles.statLabel}>Days Active</Text>
-          </View>
-        </View>
       ))}
 
       {/* Action Buttons */}
@@ -294,24 +276,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     marginBottom: 16,
-  },
-  statsContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-  },
-  statItem: {
-    alignItems: 'center',
-  },
-  statNumber: {
-    fontSize: Typography.fontSizes['2xl'],
-    fontWeight: Typography.fontWeights.bold,
-    color: Colors.primary.main,
-    marginBottom: 4,
-  },
-  statLabel: {
-    fontSize: Typography.fontSizes.xs,
-    color: Colors.text.secondary,
-    textAlign: 'center',
   },
   buttonContainer: {
     paddingHorizontal: 20,

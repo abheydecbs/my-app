@@ -39,7 +39,7 @@ export default function CoffeeShopsScreen() {
               </Text>
             </View>
           </View>
-          <Text style={styles.coffeeSubtext}>Local coffee shop #{index + 1}</Text>
+          <Text style={styles.coffeeSubtext}>☕ Local coffee shop #{index + 1}</Text>
         </View>
       </View>
     );
@@ -49,9 +49,9 @@ export default function CoffeeShopsScreen() {
     <View style={styles.container}>
       {/* Professional header section */}
       <View style={styles.header}>
-        <Text style={styles.title}>Local Coffee Shops</Text>
+        <Text style={styles.title}>☕ Local Coffee Shops</Text>
         <Text style={styles.subtitle}>
-          Discover amazing coffee experiences near you
+          🏪 Discover amazing coffee spots near you
         </Text>
       </View>
       
@@ -70,7 +70,7 @@ export default function CoffeeShopsScreen() {
       {/* Professional footer with info */}
       <View style={styles.footer}>
         <Text style={styles.footerText}>
-          Total coffee shops: {COFFEE_SHOPS.length}
+          ☕ Total coffee shops: {COFFEE_SHOPS.length} 🏪
         </Text>
       </View>
       
@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
   coffeeCard: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: Colors.background.paper,
+    backgroundColor: '#FFF8E1', // Warm coffee cream
     borderRadius: 8,
     padding: 16,
     ...Shadows.small,

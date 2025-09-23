@@ -4,16 +4,16 @@ import { Ionicons } from '@expo/vector-icons';
 import { COFFEE_REGIONS } from '../data/const';
 import { Colors, Typography, Shadows } from '../GlobalStyles';
 
-// RoasteriesScreen demonstrates the JavaScript array.map() method with professional design
+// OriginScreen demonstrates the JavaScript array.map() method with professional design
 // This is the traditional way to render lists in React/React Native
 // Good for smaller lists, but FlatList is better for large datasets
-export default function RoasteriesScreen() {
+export default function OriginScreen() {
   
   // Professional coffee region item renderer
   const renderCoffeeRegionItem = (region, index) => {
     const qualities = [
-      'Fruity & Bright', 'Rich & Bold', 'Smooth & Balanced', 
-      'Nutty & Sweet', 'Floral & Complex', 'Chocolatey & Deep'
+      '☕ Fruity & Bright', '🍫 Rich & Bold', '🥜 Smooth & Balanced', 
+      '🍯 Nutty & Sweet', '🌸 Floral & Complex', '🍫 Chocolatey & Deep'
     ];
     
     return (
@@ -22,7 +22,7 @@ export default function RoasteriesScreen() {
           <Ionicons 
             name="leaf" 
             size={20} 
-            color={Colors.success.main} 
+            color="#6D4C41" 
           />
         </View>
         <View style={styles.regionContent}>
@@ -34,7 +34,7 @@ export default function RoasteriesScreen() {
             <Ionicons 
               name="triangle" 
               size={12} 
-              color={Colors.text.secondary} 
+              color="#8D6E63" 
             />
             <Text style={styles.altitudeText}>
               {800 + Math.floor(Math.random() * 1500)}m elevation
@@ -45,7 +45,7 @@ export default function RoasteriesScreen() {
           <Ionicons 
             name="star" 
             size={16} 
-            color={Colors.warning.main} 
+            color="#FF8F00" 
           />
           <Text style={styles.ratingText}>4.{Math.floor(Math.random() * 10)}</Text>
         </View>
@@ -57,16 +57,16 @@ export default function RoasteriesScreen() {
     <View style={styles.container}>
       {/* Professional header section */}
       <View style={styles.header}>
-        <Text style={styles.title}>Coffee Origins</Text>
+        <Text style={styles.title}>☕ Coffee Origins</Text>
         <Text style={styles.subtitle}>
-          Discover the world's finest coffee regions
+          🌍 Discover the world's finest coffee regions
         </Text>
       </View>
       
       {/* Professional list container */}
       <View style={styles.listContainer}>
         <View style={styles.listHeader}>
-          <Text style={styles.listTitle}>Coffee Growing Regions</Text>
+          <Text style={styles.listTitle}>🌱 Coffee Growing Regions</Text>
           <Text style={styles.itemCount}>{COFFEE_REGIONS.length} origins</Text>
         </View>
         
@@ -83,7 +83,7 @@ export default function RoasteriesScreen() {
       {/* Professional footer */}
       <View style={styles.footer}>
         <Text style={styles.footerText}>
-          Premium coffee beans from around the world
+          ☕ Premium coffee beans from around the world 🌍
         </Text>
       </View>
       
@@ -95,7 +95,7 @@ export default function RoasteriesScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: Colors.background.default,
+    backgroundColor: '#F5F0E8', // Warm cream background
     paddingHorizontal: 20,
   },
   header: {
@@ -105,20 +105,22 @@ const styles = StyleSheet.create({
   title: {
     fontSize: Typography.fontSizes['2xl'],
     fontWeight: Typography.fontWeights.bold,
-    color: Colors.text.primary,
+    color: '#3E2723', // Dark coffee brown
     marginBottom: 8,
   },
   subtitle: {
     fontSize: Typography.fontSizes.base,
-    color: Colors.text.secondary,
+    color: '#5D4037', // Medium coffee brown
     textAlign: 'center',
   },
   listContainer: {
     flex: 1,
-    backgroundColor: Colors.background.paper,
+    backgroundColor: '#FFFFFF', // Pure white for contrast
     borderRadius: 12,
     padding: 16,
     ...Shadows.medium,
+    borderTopWidth: 3,
+    borderTopColor: '#8D6E63', // Coffee brown accent
   },
   listHeader: {
     flexDirection: 'row',
@@ -127,16 +129,16 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     paddingBottom: 12,
     borderBottomWidth: 1,
-    borderBottomColor: Colors.neutral.gray200,
+    borderBottomColor: '#EFEBE9', // Light coffee cream
   },
   listTitle: {
     fontSize: Typography.fontSizes.lg,
     fontWeight: Typography.fontWeights.semibold,
-    color: Colors.text.primary,
+    color: '#3E2723', // Dark coffee brown
   },
   itemCount: {
     fontSize: Typography.fontSizes.sm,
-    color: Colors.text.secondary,
+    color: '#8D6E63', // Coffee brown
     fontWeight: Typography.fontWeights.medium,
   },
   scrollView: {
@@ -148,19 +150,19 @@ const styles = StyleSheet.create({
   regionCard: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: Colors.background.paper,
+    backgroundColor: '#FFF8E1', // Warm cream white
     borderRadius: 8,
     padding: 16,
     marginBottom: 12,
     ...Shadows.small,
     borderLeftWidth: 3,
-    borderLeftColor: Colors.success.main,
+    borderLeftColor: '#6D4C41', // Rich coffee brown
   },
   coffeeIcon: {
     width: 40,
     height: 40,
     borderRadius: 20,
-    backgroundColor: Colors.success.light,
+    backgroundColor: '#D7CCC8', // Light coffee cream
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: 16,
@@ -171,12 +173,12 @@ const styles = StyleSheet.create({
   regionName: {
     fontSize: Typography.fontSizes.lg,
     fontWeight: Typography.fontWeights.semibold,
-    color: Colors.text.primary,
+    color: '#3E2723', // Dark coffee brown
     marginBottom: 4,
   },
   regionDescription: {
     fontSize: Typography.fontSizes.sm,
-    color: Colors.text.secondary,
+    color: '#5D4037', // Medium coffee brown
     marginBottom: 4,
   },
   altitudeContainer: {
@@ -185,13 +187,13 @@ const styles = StyleSheet.create({
   },
   altitudeText: {
     fontSize: Typography.fontSizes.xs,
-    color: Colors.text.secondary,
+    color: '#8D6E63', // Coffee brown
     marginLeft: 4,
   },
   ratingContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: Colors.warning.light,
+    backgroundColor: '#FFE0B2', // Warm golden background
     paddingHorizontal: 8,
     paddingVertical: 4,
     borderRadius: 12,
@@ -199,19 +201,19 @@ const styles = StyleSheet.create({
   ratingText: {
     fontSize: Typography.fontSizes.xs,
     fontWeight: Typography.fontWeights.semibold,
-    color: Colors.warning.dark,
+    color: '#E65100', // Warm orange-brown
     marginLeft: 4,
   },
   footer: {
     paddingVertical: 16,
     alignItems: 'center',
     borderTopWidth: 1,
-    borderTopColor: Colors.neutral.gray200,
+    borderTopColor: '#EFEBE9', // Light coffee cream
     marginTop: 16,
   },
   footerText: {
     fontSize: Typography.fontSizes.sm,
-    color: Colors.text.secondary,
+    color: '#5D4037', // Medium coffee brown
     fontWeight: Typography.fontWeights.medium,
   },
 });

@@ -1,77 +1,77 @@
 import { StyleSheet } from 'react-native';
 
-// Professional Color Palette - Modern Blue Theme
+// Professional Color Palette - Coffee Shop Theme
 const Colors = {
-  // Primary Brand Colors
+  // Primary Brand Colors - Coffee Browns
   primary: {
-    main: '#2196F3',            // Professional Blue
-    dark: '#1976D2',            // Darker Blue
-    light: '#BBDEFB',           // Light Blue
+    main: '#6D4C41',            // Rich Coffee Brown
+    dark: '#3E2723',            // Dark Espresso Brown
+    light: '#D7CCC8',           // Light Coffee Cream
   },
   
-  // Secondary Colors
+  // Secondary Colors - Coffee Accents
   secondary: {
-    main: '#FF5722',            // Orange Accent
-    light: '#FFCCBC',           // Light Orange
-    dark: '#D84315',            // Dark Orange
+    main: '#FF8F00',            // Golden Coffee
+    light: '#FFE0B2',           // Light Golden Cream
+    dark: '#E65100',            // Dark Roasted Orange
   },
   
-  // Background Colors
+  // Background Colors - Coffee Shop Ambiance
   background: {
-    default: '#F8F9FA',         // Light Gray Background
-    paper: '#FFFFFF',           // White Surface
+    default: '#F5F0E8',         // Warm Cream Background
+    paper: '#FFFFFF',           // Pure White Surface
   },
   
-  // Text Colors
+  // Text Colors - Coffee Inspired
   text: {
-    primary: '#212121',         // Dark Gray Text
-    secondary: '#757575',       // Medium Gray Text
+    primary: '#3E2723',         // Dark Coffee Brown
+    secondary: '#5D4037',       // Medium Coffee Brown
     inverse: '#FFFFFF',         // White Text
   },
   
-  // Neutral Colors
+  // Neutral Colors - Coffee Tones
   neutral: {
-    gray100: '#F5F5F5',
-    gray200: '#E0E0E0',
-    gray300: '#BDBDBD',
-    gray400: '#9E9E9E',
-    gray500: '#757575',
-    gray600: '#616161',
-    gray700: '#424242',
+    gray100: '#EFEBE9',         // Light Coffee Cream
+    gray200: '#D7CCC8',         // Coffee Cream
+    gray300: '#BCAAA4',         // Medium Coffee
+    gray400: '#A1887F',         // Coffee Brown
+    gray500: '#8D6E63',         // Rich Coffee
+    gray600: '#6D4C41',         // Dark Coffee
+    gray700: '#5D4037',         // Espresso
   },
   
-  // Status Colors
+  // Status Colors - Coffee Shop Themed
   success: {
-    main: '#4CAF50',            // Green
-    light: '#C8E6C9',           // Light Green
-    dark: '#2E7D32',            // Dark Green
+    main: '#6D4C41',            // Coffee Brown (for plants/origins)
+    light: '#D7CCC8',           // Light Coffee
+    dark: '#3E2723',            // Dark Coffee
   },
   warning: {
-    main: '#FF9800',            // Orange
-    light: '#FFE0B2',           // Light Orange
-    dark: '#F57C00',            // Dark Orange
+    main: '#FF8F00',            // Golden Coffee
+    light: '#FFE0B2',           // Light Golden
+    dark: '#E65100',            // Dark Golden
   },
   error: {
-    main: '#F44336',            // Red
-    light: '#FFCDD2',           // Light Red
-    dark: '#D32F2F',            // Dark Red
+    main: '#D84315',            // Roasted Red
+    light: '#FFCCBC',           // Light Roasted
+    dark: '#BF360C',            // Dark Roasted
   },
   info: {
-    main: '#2196F3',            // Blue
-    light: '#BBDEFB',           // Light Blue
-    dark: '#1976D2',            // Dark Blue
+    main: '#6D4C41',            // Coffee Brown
+    light: '#D7CCC8',           // Light Coffee
+    dark: '#3E2723',            // Dark Coffee
   },
   
   // Legacy flat structure (for backwards compatibility)
   card: '#FFFFFF',              // Card Background
-  border: '#E0E0E0',            // Light Border
-  divider: '#EEEEEE',           // Divider Line
+  border: '#EFEBE9',            // Light Coffee Border
+  divider: '#D7CCC8',           // Coffee Cream Divider
   shadow: '#000000',            // Shadow Color
-  textPrimary: '#212121',       // For legacy references
-  textSecondary: '#757575',     // For legacy references
-  textLight: '#BDBDBD',         // For legacy references
-  background: '#F8F9FA',        // For legacy references
-  surface: '#FFFFFF',           // For legacy references
+  textPrimary: '#3E2723',       // Dark Coffee Brown
+  textSecondary: '#5D4037',     // Medium Coffee Brown
+  textLight: '#8D6E63',         // Light Coffee Brown
+  background: '#F5F0E8',        // Warm Cream
+  surface: '#FFFFFF',           // Pure White
 };
 
 // Professional Typography Scale

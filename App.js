@@ -6,7 +6,7 @@ import { Ionicons } from '@expo/vector-icons';
 
 // Import all screen components for the tab navigator
 import CoffeeShopsScreen from './screens/CoffeeShopsScreen';
-import RoasteriesScreen from './screens/RoasteriesScreen';
+import OriginScreen from './screens/OriginScreen';
 import ReviewsScreen from './screens/ReviewsScreen';
 import HomeScreen from './screens/HomeScreen';
 import SettingsStackNavigator from './navigation/SettingsStackNavigator';
@@ -28,7 +28,7 @@ const getTabIcon = (routeName, focused, color, size) => {
     case 'Coffee Shops':
       iconName = focused ? 'cafe' : 'cafe-outline';
       break;
-    case 'Roasteries':
+    case 'Origin':
       iconName = focused ? 'business' : 'business-outline';
       break;
     case 'Reviews':
@@ -76,7 +76,7 @@ export default function App() {
           
           // Professional header styling
           headerStyle: {
-            backgroundColor: Colors.primary.main,
+            backgroundColor: Colors.primary.main, // Coffee brown
             ...Shadows.medium,
           },
           headerTintColor: Colors.text.inverse,
@@ -106,13 +106,13 @@ export default function App() {
             headerTitle: 'Local Coffee Shops',
           }}
         />
-        {/* Roasteries Tab - Find specialty coffee roasters in your area */}
+        {/* Origin Tab - Find specialty coffee roasters in your area */}
         <Tab.Screen 
-          name="Roasteries" 
-          component={RoasteriesScreen} 
+          name="Origin" 
+          component={OriginScreen} 
           options={{
-            tabBarLabel: 'Roasteries',
-            headerTitle: 'Coffee Roasteries',
+            tabBarLabel: 'Origin',
+            headerTitle: 'Coffee Origins',
           }}
         />
         {/* Reviews Tab - Read and write coffee shop reviews */}
@@ -136,7 +136,7 @@ export default function App() {
         />
       </Tab.Navigator>
       {/* Status bar styling for the entire app */}
-      <StatusBar style="light" />
+      <StatusBar style="light" backgroundColor="#3E2723" />
     </NavigationContainer>
   );
 }

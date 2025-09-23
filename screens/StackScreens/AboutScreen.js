@@ -7,26 +7,26 @@ import { Colors, Typography, Shadows } from '../../GlobalStyles';
 
 export default function AboutScreen({ navigation }) {
   const appInfo = {
-    name: 'React Native Learning App',
+    name: '☕ Coffee Connect',
     version: '1.0.0',
     buildNumber: '100',
     developer: 'Alexander',
-    description: 'A comprehensive React Native learning application showcasing navigation, data handling, and professional UI components.',
+    description: 'A comprehensive coffee discovery app helping you find the perfect coffee shops, explore coffee origins, and connect with fellow coffee enthusiasts.',
     features: [
-      'Professional Navigation System',
-      'Component Showcase',
-      'FlatList Demonstrations',
-      'Array Mapping Examples',
-      'API Data Fetching',
-      'User Profile Management',
-      'Settings & Preferences'
+      '☕ Local Coffee Shop Discovery',
+      '🌱 Coffee Origin Explorer', 
+      '⭐ Coffee Reviews & Ratings',
+      '🏪 Professional Coffee Shop Listings',
+      '📱 Modern Coffee-Themed UI',
+      '⚙️ Personalized Coffee Preferences',
+      '📍 Location-Based Coffee Finder'
     ],
     technologies: [
       'React Native',
       'Expo',
       'React Navigation',
       'JavaScript ES6+',
-      'RESTful APIs'
+      'Coffee APIs ☕'
     ]
   };
 
@@ -64,7 +64,7 @@ export default function AboutScreen({ navigation }) {
       {/* App Header */}
       <View style={styles.header}>
         <View style={styles.appIcon}>
-          <Ionicons name="phone-portrait" size={48} color={Colors.primary.main} />
+          <Ionicons name="cafe" size={48} color={Colors.primary.main} />
         </View>
         <Text style={styles.appName}>{appInfo.name}</Text>
         <Text style={styles.version}>Version {appInfo.version} ({appInfo.buildNumber})</Text>
@@ -72,13 +72,13 @@ export default function AboutScreen({ navigation }) {
       </View>
 
       {/* App Description */}
-      {renderInfoCard('About This App', appInfo.description, 'information-circle-outline')}
+      {renderInfoCard('☕ About This App', appInfo.description, 'information-circle-outline')}
 
       {/* Features */}
-      {renderInfoCard('Features', appInfo.features, 'star-outline')}
+      {renderInfoCard('✨ Features', appInfo.features, 'star-outline')}
 
       {/* Technologies */}
-      {renderInfoCard('Built With', appInfo.technologies, 'code-slash-outline')}
+      {renderInfoCard('🛠 Built With', appInfo.technologies, 'code-slash-outline')}
 
       {/* Additional Info */}
       <View style={styles.infoCard}>
@@ -86,7 +86,7 @@ export default function AboutScreen({ navigation }) {
           <View style={styles.cardIcon}>
             <Ionicons name="calendar-outline" size={24} color={Colors.primary.main} />
           </View>
-          <Text style={styles.cardTitle}>Release Information</Text>
+          <Text style={styles.cardTitle}>📅 Release Information</Text>
         </View>
         <View style={styles.cardContent}>
           <View style={styles.infoRow}>
