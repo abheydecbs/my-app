@@ -17,50 +17,50 @@ const HomeScreen = () => {
   const componentShowcase = [
     {
       id: 1,
-      title: "Basic Component",
-      description: "Demonstrates basic component structure and inline styling",
-      icon: "cube-outline",
+      title: "Coffee Shop Finder",
+      description: "Discover the best local coffee shops and cafes",
+      icon: "cafe-outline",
       component: <FirstComponent />,
-      category: "Foundation"
+      category: "Discovery"
     },
     {
       id: 2,
-      title: "Props Component",
-      description: "Shows how to pass and use props effectively",
-      icon: "share-outline",
-      component: <PropsComponent name="Alexander" />,
-      category: "Data Flow"
+      title: "Barista Profiles",
+      description: "Meet skilled baristas and their specialties",
+      icon: "person-outline",
+      component: <PropsComponent name="Alexander the Barista" />,
+      category: "Community"
     },
     {
       id: 3,
-      title: "Input Component",
-      description: "Demonstrates state management and user input handling",
-      icon: "create-outline",
+      title: "Coffee Search",
+      description: "Search for specific coffee types and origins",
+      icon: "search-outline",
       component: <InputComponent />,
-      category: "Interaction"
+      category: "Search"
     },
     {
       id: 4,
-      title: "Asset Component",
-      description: "Shows local asset handling and image display",
-      icon: "image-outline",
+      title: "Coffee Bean Gallery",
+      description: "Visual guide to different coffee bean varieties",
+      icon: "leaf-outline",
       component: <AssetComponent source={require('../assets/favicon.png')} />,
-      category: "Media"
+      category: "Education"
     },
     {
       id: 5,
-      title: "Button Variants",
-      description: "Professional button components with multiple states",
-      icon: "radio-button-on-outline",
+      title: "Coffee Actions",
+      description: "Quick actions for coffee lovers - order, review, save favorites",
+      icon: "heart-outline",
       component: (
         <View style={styles.buttonShowcase}>
-          <ButtonComponent title="Primary" variant="primary" size="small" />
-          <ButtonComponent title="Secondary" variant="secondary" size="small" />
-          <ButtonComponent title="Outline" variant="outline" size="small" />
-          <ButtonComponent title="Danger" variant="danger" size="small" />
+          <ButtonComponent title="Order Now" variant="primary" size="small" />
+          <ButtonComponent title="Add Review" variant="secondary" size="small" />
+          <ButtonComponent title="Save Shop" variant="outline" size="small" />
+          <ButtonComponent title="Report Issue" variant="danger" size="small" />
         </View>
       ),
-      category: "Interactive"
+      category: "Actions"
     }
   ];
 
@@ -99,14 +99,14 @@ const HomeScreen = () => {
       <View style={styles.header}>
         <View style={styles.headerIcon}>
           <Ionicons 
-            name="apps" 
+            name="cafe" 
             size={32} 
             color={Colors.primary.main} 
           />
         </View>
-        <Text style={styles.title}>Component Showcase</Text>
+        <Text style={styles.title}>Coffee Connect</Text>
         <Text style={styles.subtitle}>
-          Explore various React Native components and their implementations
+          Your ultimate companion for finding amazing coffee experiences
         </Text>
       </View>
       
@@ -114,31 +114,31 @@ const HomeScreen = () => {
       <View style={styles.statsContainer}>
         <View style={styles.statCard}>
           <Text style={styles.statNumber}>{componentShowcase.length}</Text>
-          <Text style={styles.statLabel}>Components</Text>
+          <Text style={styles.statLabel}>Features</Text>
         </View>
         <View style={styles.statCard}>
-          <Text style={styles.statNumber}>5</Text>
-          <Text style={styles.statLabel}>Categories</Text>
+          <Text style={styles.statNumber}>500+</Text>
+          <Text style={styles.statLabel}>Coffee Shops</Text>
         </View>
         <View style={styles.statCard}>
-          <Text style={styles.statNumber}>100%</Text>
-          <Text style={styles.statLabel}>Functional</Text>
+          <Text style={styles.statNumber}>4.8★</Text>
+          <Text style={styles.statLabel}>Avg Rating</Text>
         </View>
       </View>
       
       {/* Component showcase grid */}
       <View style={styles.showcaseContainer}>
-        <Text style={styles.sectionTitle}>Available Components</Text>
+        <Text style={styles.sectionTitle}>App Features</Text>
         {componentShowcase.map(renderComponentCard)}
       </View>
       
       {/* Professional footer */}
       <View style={styles.footer}>
         <Text style={styles.footerText}>
-          Built with React Native & Expo
+          Find Your Perfect Cup ☕
         </Text>
         <Text style={styles.footerSubtext}>
-          Professional UI component showcase
+          Connecting coffee lovers worldwide
         </Text>
       </View>
     </ScrollView>

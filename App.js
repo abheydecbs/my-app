@@ -5,9 +5,9 @@ import { StatusBar } from 'expo-status-bar';
 import { Ionicons } from '@expo/vector-icons';
 
 // Import all screen components for the tab navigator
-import CarListScreen from './screens/CarListScreen';
-import CountryListScreen from './screens/CountryListScreen';
-import UserListScreen from './screens/UserListScreen';
+import CoffeeShopsScreen from './screens/CoffeeShopsScreen';
+import RoasteriesScreen from './screens/RoasteriesScreen';
+import ReviewsScreen from './screens/ReviewsScreen';
 import HomeScreen from './screens/HomeScreen';
 import SettingsStackNavigator from './navigation/SettingsStackNavigator';
 
@@ -25,14 +25,14 @@ const getTabIcon = (routeName, focused, color, size) => {
     case 'Home':
       iconName = focused ? 'home' : 'home-outline';
       break;
-    case 'Car List':
-      iconName = focused ? 'car-sport' : 'car-sport-outline';
+    case 'Coffee Shops':
+      iconName = focused ? 'cafe' : 'cafe-outline';
       break;
-    case 'Country List':
-      iconName = focused ? 'map' : 'map-outline';
+    case 'Roasteries':
+      iconName = focused ? 'business' : 'business-outline';
       break;
-    case 'User List':
-      iconName = focused ? 'people' : 'people-outline';
+    case 'Reviews':
+      iconName = focused ? 'star' : 'star-outline';
       break;
     case 'Settings':
       iconName = focused ? 'settings' : 'settings-outline';
@@ -97,31 +97,31 @@ export default function App() {
             headerTitle: 'Home',
           }}
         />
-        {/* Car List Tab - Demonstrates FlatList component with static array data */}
+        {/* Coffee Shops Tab - Discover local coffee shops with ratings and details */}
         <Tab.Screen 
-          name="Car List" 
-          component={CarListScreen} 
+          name="Coffee Shops" 
+          component={CoffeeShopsScreen} 
           options={{
-            tabBarLabel: 'Car List',
-            headerTitle: 'Car List',
+            tabBarLabel: 'Coffee Shops',
+            headerTitle: 'Local Coffee Shops',
           }}
         />
-        {/* Country List Tab - Shows array.map() method for rendering lists */}
+        {/* Roasteries Tab - Find specialty coffee roasters in your area */}
         <Tab.Screen 
-          name="Country List" 
-          component={CountryListScreen} 
+          name="Roasteries" 
+          component={RoasteriesScreen} 
           options={{
-            tabBarLabel: 'Country List',
-            headerTitle: 'Country List',
+            tabBarLabel: 'Roasteries',
+            headerTitle: 'Coffee Roasteries',
           }}
         />
-        {/* User List Tab - Demonstrates API calls and dynamic data fetching */}
+        {/* Reviews Tab - Read and write coffee shop reviews */}
         <Tab.Screen 
-          name="User List" 
-          component={UserListScreen} 
+          name="Reviews" 
+          component={ReviewsScreen} 
           options={{
-            tabBarLabel: 'User List',
-            headerTitle: 'User List',
+            tabBarLabel: 'Reviews',
+            headerTitle: 'Coffee Reviews',
           }}
         />
         {/* Settings Tab - App settings with user profile navigation */}

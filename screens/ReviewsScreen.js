@@ -13,53 +13,75 @@ import {
 } from 'react-native';
 import { useState, useEffect } from 'react';
 import { Ionicons } from '@expo/vector-icons';
-import { GET_USERS_URL } from '../data/const';
+import { GET_REVIEWS_URL } from '../data/const';
 import { Colors, Typography, Shadows } from '../GlobalStyles';
 
-// UserListScreen demonstrates API integration with professional UI design
+// ReviewsScreen demonstrates API integration with professional UI design
 // Shows how to fetch data from external APIs, manage loading states, and handle user input
-export default function UserListScreen() {
+export default function ReviewsScreen() {
   // State variables using React hooks
-  const [user, setUser] = useState([]);        // Stores the fetched user data
+  const [reviews, setReviews] = useState([]);        // Stores the fetched review data
   const [msg, setMsg] = useState('');          // Stores status messages (loading, errors)
-  const [amount, setAmount] = useState(5);     // Controls how many users to fetch
+  const [amount, setAmount] = useState(5);     // Controls how many reviews to fetch
   const [loading, setLoading] = useState(false); // Loading state
 
-  // Professional async function to fetch user data from the API
-  const loadUsers = async () => {
+  // Professional async function to fetch review data from the API
+  const loadReviews = async () => {
     try {
       setLoading(true);                        // Start loading
       setMsg('');                              // Clear previous messages
       
       // Use default of 5 if amount is empty or invalid
-      const userCount = amount || 5;
+      const reviewCount = amount || 5;
       
-      // Fetch data from randomuser.me API with specified number of results
-      const response = await fetch(GET_USERS_URL + userCount);
+      // Fetch data from randomuser.me API with specified number of results (simulating coffee reviews)
+      const response = await fetch(GET_REVIEWS_URL + reviewCount);
       const data = await response.json();      // Parse JSON response
-      setUser(data.results);                   // Store user data in state
+      setReviews(data.results);                   // Store review data in state
     } catch (error) {
       // Handle any errors during the fetch operation
-      setMsg('Failed to load users. Please try again.');
+      setMsg('Failed to load reviews. Please try again.');
       console.error('Fetch error:', error);
     } finally {
       setLoading(false);                       // Stop loading
     }
   };
 
-  // Professional user card renderer
-  const renderUserCard = (person, index) => {
+  // Professional review card renderer
+  const renderReviewCard = (person, index) => {
+    const coffeeShops = [
+      "Blue Bottle Coffee", "Stumptown Coffee", "Intelligentsia", "La Colombe",
+      "Counter Culture", "Ritual Coffee", "Heart Coffee", "Coava Coffee"
+    ];
+    const rating = (4 + Math.random()).toFixed(1);
+    const shopName = coffeeShops[index % coffeeShops.length];
+
     return (
-      <View key={index} style={styles.userCard}>
+      <View key={index} style={styles.reviewCard}>
         <Image
           source={{ uri: person.picture.medium }}
           style={styles.profileImage}
         />
-        <View style={styles.userInfo}>
-          <Text style={styles.userName}>
+        <View style={styles.reviewInfo}>
+          <Text style={styles.reviewerName}>
             {person.name.first} {person.name.last}
           </Text>
-          <Text style={styles.userEmail}>{person.email}</Text>
+          <View style={styles.shopContainer}>
+            <Ionicons 
+              name="cafe" 
+              size={14} 
+              color={Colors.primary.main} 
+            />
+            <Text style={styles.shopText}>{shopName}</Text>
+          </View>
+          <View style={styles.ratingContainer}>
+            <Ionicons 
+              name="star" 
+              size={16} 
+              color={Colors.warning.main} 
+            />
+            <Text style={styles.ratingText}>{rating}</Text>
+          </View>
           <View style={styles.locationContainer}>
             <Ionicons 
               name="location-outline" 
@@ -71,11 +93,11 @@ export default function UserListScreen() {
             </Text>
           </View>
         </View>
-        <View style={styles.userBadge}>
+        <View style={styles.reviewBadge}>
           <Ionicons 
-            name="person" 
+            name="chatbubble" 
             size={16} 
-            color={Colors.primary.main} 
+            color={Colors.success.main} 
           />
         </View>
       </View>
@@ -84,7 +106,7 @@ export default function UserListScreen() {
 
   // useEffect hook runs side effects (like API calls)
   useEffect(() => {
-    loadUsers();                               // Call loadUsers when component mounts
+    loadReviews();                               // Call loadReviews when component mounts
   }, [amount]);                                // Re-run when 'amount' changes
 
   return (
@@ -92,18 +114,18 @@ export default function UserListScreen() {
       <View style={styles.container}>
         {/* Professional header section */}
         <View style={styles.header}>
-          <Text style={styles.title}>User Directory</Text>
+          <Text style={styles.title}>Coffee Reviews</Text>
           <Text style={styles.subtitle}>
-            API data fetching demonstration
+            Real reviews from coffee enthusiasts
           </Text>
         </View>
         
         {/* Professional input section */}
         <View style={styles.inputSection}>
-          <Text style={styles.inputLabel}>Number of users to load:</Text>
+          <Text style={styles.inputLabel}>Number of reviews to load:</Text>
           <View style={styles.inputContainer}>
             <Ionicons 
-              name="people-outline" 
+              name="chatbubbles-outline" 
               size={20} 
               color={Colors.neutral.gray500} 
               style={styles.inputIcon}
@@ -131,7 +153,7 @@ export default function UserListScreen() {
         {/* Professional content section */}
         <View style={styles.contentContainer}>
           <View style={styles.listHeader}>
-            <Text style={styles.listTitle}>Users ({user.length})</Text>
+            <Text style={styles.listTitle}>Reviews ({reviews.length})</Text>
             {loading && (
               <ActivityIndicator 
                 size="small" 
@@ -140,14 +162,14 @@ export default function UserListScreen() {
             )}
           </View>
           
-          {loading && user.length === 0 ? (
+          {loading && reviews.length === 0 ? (
             // Professional loading state
             <View style={styles.loadingContainer}>
               <ActivityIndicator 
                 size="large" 
                 color={Colors.primary.main} 
               />
-              <Text style={styles.loadingText}>Loading users...</Text>
+              <Text style={styles.loadingText}>Loading reviews...</Text>
             </View>
           ) : msg ? (
             // Professional error state
@@ -160,14 +182,14 @@ export default function UserListScreen() {
               <Text style={styles.errorText}>{msg}</Text>
             </View>
           ) : (
-            // Professional user list
+            // Professional review list
             <ScrollView 
               style={styles.scrollView}
               contentContainerStyle={styles.scrollContent}
               showsVerticalScrollIndicator={true}
               nestedScrollEnabled={true}
             >
-              {user.map((person, index) => renderUserCard(person, index))}
+              {reviews.map((person, index) => renderReviewCard(person, index))}
             </ScrollView>
           )}
         </View>
@@ -276,7 +298,7 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     flexGrow: 1,
   },
-  userCard: {
+  reviewCard: {
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: Colors.background.paper,
@@ -285,7 +307,7 @@ const styles = StyleSheet.create({
     marginBottom: 12,
     ...Shadows.small,
     borderLeftWidth: 3,
-    borderLeftColor: Colors.info.main,
+    borderLeftColor: Colors.success.main,
   },
   profileImage: {
     width: 60,
@@ -295,19 +317,36 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: Colors.neutral.gray200,
   },
-  userInfo: {
+  reviewInfo: {
     flex: 1,
   },
-  userName: {
+  reviewerName: {
     fontSize: Typography.fontSizes.lg,
     fontWeight: Typography.fontWeights.semibold,
     color: Colors.text.primary,
     marginBottom: 4,
   },
-  userEmail: {
+  shopContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 4,
+  },
+  shopText: {
     fontSize: Typography.fontSizes.sm,
-    color: Colors.text.secondary,
-    marginBottom: 6,
+    color: Colors.primary.main,
+    marginLeft: 4,
+    fontWeight: Typography.fontWeights.medium,
+  },
+  ratingContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 4,
+  },
+  ratingText: {
+    fontSize: Typography.fontSizes.xs,
+    color: Colors.text.primary,
+    marginLeft: 4,
+    fontWeight: Typography.fontWeights.medium,
   },
   locationContainer: {
     flexDirection: 'row',
@@ -318,11 +357,11 @@ const styles = StyleSheet.create({
     color: Colors.text.secondary,
     marginLeft: 4,
   },
-  userBadge: {
+  reviewBadge: {
     width: 32,
     height: 32,
     borderRadius: 16,
-    backgroundColor: Colors.primary.light,
+    backgroundColor: Colors.success.light,
     alignItems: 'center',
     justifyContent: 'center',
   },

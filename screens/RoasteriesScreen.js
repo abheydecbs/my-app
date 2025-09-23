@@ -1,30 +1,45 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { COUNTRIES } from '../data/const';
+import { COFFEE_REGIONS } from '../data/const';
 import { Colors, Typography, Shadows } from '../GlobalStyles';
 
-// CountryListScreen demonstrates the JavaScript array.map() method with professional design
+// RoasteriesScreen demonstrates the JavaScript array.map() method with professional design
 // This is the traditional way to render lists in React/React Native
 // Good for smaller lists, but FlatList is better for large datasets
-export default function CountryListScreen() {
+export default function RoasteriesScreen() {
   
-  // Professional country item renderer
-  const renderCountryItem = (country, index) => {
+  // Professional coffee region item renderer
+  const renderCoffeeRegionItem = (region, index) => {
+    const qualities = [
+      'Fruity & Bright', 'Rich & Bold', 'Smooth & Balanced', 
+      'Nutty & Sweet', 'Floral & Complex', 'Chocolatey & Deep'
+    ];
+    
     return (
-      <View key={index} style={styles.countryCard}>
-        <View style={styles.flagIcon}>
+      <View key={index} style={styles.regionCard}>
+        <View style={styles.coffeeIcon}>
           <Ionicons 
-            name="flag" 
+            name="leaf" 
             size={20} 
-            color={Colors.primary.main} 
+            color={Colors.success.main} 
           />
         </View>
-        <View style={styles.countryContent}>
-          <Text style={styles.countryName}>{country}</Text>
-          <Text style={styles.countryDescription}>
-            A wonderful destination to explore
+        <View style={styles.regionContent}>
+          <Text style={styles.regionName}>{region}</Text>
+          <Text style={styles.regionDescription}>
+            {qualities[index % qualities.length]} coffee beans
           </Text>
+          <View style={styles.altitudeContainer}>
+            <Ionicons 
+              name="triangle" 
+              size={12} 
+              color={Colors.text.secondary} 
+            />
+            <Text style={styles.altitudeText}>
+              {800 + Math.floor(Math.random() * 1500)}m elevation
+            </Text>
+          </View>
         </View>
         <View style={styles.ratingContainer}>
           <Ionicons 
@@ -42,17 +57,17 @@ export default function CountryListScreen() {
     <View style={styles.container}>
       {/* Professional header section */}
       <View style={styles.header}>
-        <Text style={styles.title}>World Destinations</Text>
+        <Text style={styles.title}>Coffee Origins</Text>
         <Text style={styles.subtitle}>
-          Array.map() method demonstration
+          Discover the world's finest coffee regions
         </Text>
       </View>
       
       {/* Professional list container */}
       <View style={styles.listContainer}>
         <View style={styles.listHeader}>
-          <Text style={styles.listTitle}>Featured Countries</Text>
-          <Text style={styles.itemCount}>{COUNTRIES.length} destinations</Text>
+          <Text style={styles.listTitle}>Coffee Growing Regions</Text>
+          <Text style={styles.itemCount}>{COFFEE_REGIONS.length} origins</Text>
         </View>
         
         <ScrollView 
@@ -60,15 +75,15 @@ export default function CountryListScreen() {
           contentContainerStyle={styles.scrollContent}
           showsVerticalScrollIndicator={false}
         >
-          {/* Using map() method to iterate over the COUNTRIES array */}
-          {COUNTRIES.map((country, index) => renderCountryItem(country, index))}
+          {/* Using map() method to iterate over the COFFEE_REGIONS array */}
+          {COFFEE_REGIONS.map((region, index) => renderCoffeeRegionItem(region, index))}
         </ScrollView>
       </View>
       
       {/* Professional footer */}
       <View style={styles.footer}>
         <Text style={styles.footerText}>
-          Rendered using JavaScript Array.map()
+          Premium coffee beans from around the world
         </Text>
       </View>
       
@@ -130,7 +145,7 @@ const styles = StyleSheet.create({
   scrollContent: {
     paddingVertical: 8,
   },
-  countryCard: {
+  regionCard: {
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: Colors.background.paper,
@@ -141,27 +156,37 @@ const styles = StyleSheet.create({
     borderLeftWidth: 3,
     borderLeftColor: Colors.success.main,
   },
-  flagIcon: {
+  coffeeIcon: {
     width: 40,
     height: 40,
     borderRadius: 20,
-    backgroundColor: Colors.primary.light,
+    backgroundColor: Colors.success.light,
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: 16,
   },
-  countryContent: {
+  regionContent: {
     flex: 1,
   },
-  countryName: {
+  regionName: {
     fontSize: Typography.fontSizes.lg,
     fontWeight: Typography.fontWeights.semibold,
     color: Colors.text.primary,
     marginBottom: 4,
   },
-  countryDescription: {
+  regionDescription: {
     fontSize: Typography.fontSizes.sm,
     color: Colors.text.secondary,
+    marginBottom: 4,
+  },
+  altitudeContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  altitudeText: {
+    fontSize: Typography.fontSizes.xs,
+    color: Colors.text.secondary,
+    marginLeft: 4,
   },
   ratingContainer: {
     flexDirection: 'row',

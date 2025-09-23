@@ -1,7 +1,8 @@
 {
   "expo": {
-    "name": "my-app",
-    "slug": "my-app",
-    "version": "1.0.0"
+    "name": "Coffee Connect",
+    "slug": "coffee-connect",
+    "version": "1.0.0",
+    "description": "Find the best local coffee shops and roasteries near you"
   }
 }

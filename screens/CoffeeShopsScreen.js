@@ -1,23 +1,45 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, FlatList } from 'react-native';
-import { CARS } from '../data/const';
+import { Ionicons } from '@expo/vector-icons';
+import { COFFEE_SHOPS } from '../data/const';
 import { Colors, Typography, Shadows } from '../GlobalStyles';
 
-// CarListScreen demonstrates the FlatList component with professional design
+// CoffeeShopsScreen demonstrates the FlatList component with professional design
 // FlatList is optimized for rendering large lists efficiently
 // It only renders visible items and recycles components for better performance
-export default function CarListScreen() {
+export default function CoffeeShopsScreen() {
   
-  // Professional renderItem function with card design
-  const renderCarItem = ({ item, index }) => {
+  // Professional renderItem function with coffee shop card design
+  const renderCoffeeShopItem = ({ item, index }) => {
+    // Generate random rating for demo purposes
+    const rating = (4 + Math.random()).toFixed(1);
+    const isOpen = Math.random() > 0.3; // 70% chance of being open
+    
     return (
-      <View style={styles.carCard}>
-        <View style={styles.carIndex}>
-          <Text style={styles.indexText}>{index + 1}</Text>
+      <View style={styles.coffeeCard}>
+        <View style={styles.coffeeIcon}>
+          <Ionicons 
+            name="cafe" 
+            size={24} 
+            color={Colors.primary.main} 
+          />
         </View>
-        <View style={styles.carContent}>
-          <Text style={styles.carName}>{item}</Text>
-          <Text style={styles.carSubtext}>Vehicle #{index + 1}</Text>
+        <View style={styles.coffeeContent}>
+          <Text style={styles.coffeeName}>{item}</Text>
+          <View style={styles.ratingContainer}>
+            <Ionicons 
+              name="star" 
+              size={16} 
+              color={Colors.warning.main} 
+            />
+            <Text style={styles.ratingText}>{rating}</Text>
+            <View style={[styles.statusBadge, { backgroundColor: isOpen ? Colors.success.light : Colors.error.light }]}>
+              <Text style={[styles.statusText, { color: isOpen ? Colors.success.main : Colors.error.main }]}>
+                {isOpen ? 'Open' : 'Closed'}
+              </Text>
+            </View>
+          </View>
+          <Text style={styles.coffeeSubtext}>Local coffee shop #{index + 1}</Text>
         </View>
       </View>
     );
@@ -27,18 +49,18 @@ export default function CarListScreen() {
     <View style={styles.container}>
       {/* Professional header section */}
       <View style={styles.header}>
-        <Text style={styles.title}>My Car Collection</Text>
+        <Text style={styles.title}>Local Coffee Shops</Text>
         <Text style={styles.subtitle}>
-          FlatList optimized rendering demonstration
+          Discover amazing coffee experiences near you
         </Text>
       </View>
       
       {/* Professional list container with proper spacing */}
       <View style={styles.listContainer}>
         <FlatList
-          data={CARS}
-          renderItem={renderCarItem}
-          keyExtractor={(item, index) => `car-${index}`}
+          data={COFFEE_SHOPS}
+          renderItem={renderCoffeeShopItem}
+          keyExtractor={(item, index) => `coffee-${index}`}
           showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.listContent}
           ItemSeparatorComponent={() => <View style={styles.separator} />}
@@ -48,7 +70,7 @@ export default function CarListScreen() {
       {/* Professional footer with info */}
       <View style={styles.footer}>
         <Text style={styles.footerText}>
-          Total vehicles: {CARS.length}
+          Total coffee shops: {COFFEE_SHOPS.length}
         </Text>
       </View>
       
@@ -88,7 +110,7 @@ const styles = StyleSheet.create({
   listContent: {
     paddingVertical: 8,
   },
-  carCard: {
+  coffeeCard: {
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: Colors.background.paper,
@@ -98,7 +120,7 @@ const styles = StyleSheet.create({
     borderLeftWidth: 3,
     borderLeftColor: Colors.primary.main,
   },
-  carIndex: {
+  coffeeIcon: {
     width: 40,
     height: 40,
     borderRadius: 20,
@@ -107,21 +129,36 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginRight: 16,
   },
-  indexText: {
-    fontSize: Typography.fontSizes.sm,
-    fontWeight: Typography.fontWeights.bold,
-    color: Colors.primary.main,
-  },
-  carContent: {
+  coffeeContent: {
     flex: 1,
   },
-  carName: {
+  coffeeName: {
     fontSize: Typography.fontSizes.lg,
     fontWeight: Typography.fontWeights.semibold,
     color: Colors.text.primary,
     marginBottom: 4,
   },
-  carSubtext: {
+  ratingContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 4,
+  },
+  ratingText: {
+    fontSize: Typography.fontSizes.sm,
+    color: Colors.text.primary,
+    marginLeft: 4,
+    marginRight: 8,
+  },
+  statusBadge: {
+    paddingHorizontal: 8,
+    paddingVertical: 2,
+    borderRadius: 4,
+  },
+  statusText: {
+    fontSize: Typography.fontSizes.xs,
+    fontWeight: Typography.fontWeights.medium,
+  },
+  coffeeSubtext: {
     fontSize: Typography.fontSizes.sm,
     color: Colors.text.secondary,
   },
