@@ -1,201 +1,119 @@
-import { StatusBar } from 'expo-status-bar';
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  SafeAreaView,
-  ScrollView,
-  TextInput,
-  TouchableWithoutFeedback,
-  Keyboard,
-  ActivityIndicator,
-} from 'react-native';
-import { useState, useEffect } from 'react';
-import { Ionicons } from '@expo/vector-icons';
-import { GET_REVIEWS_URL } from '../data/const';
-import { Colors, Typography, Shadows } from '../GlobalStyles';
+import { StyleSheet, Text, View, ScrollView, ActivityIndicator, TouchableOpacity, Image } from "react-native";
+import { useState, useEffect } from "react";
+import { Ionicons } from "@expo/vector-icons";
+import { GET_REVIEWS_URL, COFFEE_SHOPS } from "../data/const";
+import { Colors, Typography, Shadows } from "../GlobalStyles";
 
-// ReviewsScreen demonstrates API integration with professional UI design
-// Shows how to fetch data from external APIs, manage loading states, and handle user input
 export default function ReviewsScreen() {
-  // State variables using React hooks
-  const [reviews, setReviews] = useState([]);        // Stores the fetched review data
-  const [msg, setMsg] = useState('');          // Stores status messages (loading, errors)
-  const [amount, setAmount] = useState(5);     // Controls how many reviews to fetch
-  const [loading, setLoading] = useState(false); // Loading state
+  const [reviews, setReviews] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [reviewCount, setReviewCount] = useState(5);
 
-  // Professional async function to fetch review data from the API
+  const countOptions = [3, 5, 10, 15, 20];
+
   const loadReviews = async () => {
     try {
-      setLoading(true);                        // Start loading
-      setMsg('');                              // Clear previous messages
-      
-      // Use default of 5 if amount is empty or invalid
-      const reviewCount = amount || 5;
-      
-      // Fetch data from randomuser.me API with specified number of results (simulating coffee reviews)
+      setLoading(true);
       const response = await fetch(GET_REVIEWS_URL + reviewCount);
-      const data = await response.json();      // Parse JSON response
-      setReviews(data.results);                   // Store review data in state
+      const data = await response.json();
+      setReviews(data.results);
     } catch (error) {
-      // Handle any errors during the fetch operation
-      setMsg('Failed to load reviews. Please try again.');
       console.error('Fetch error:', error);
+      // Keep static data if fetch fails
+      const staticReviews = [
+        { name: { first: "John", last: "Smith" }, location: { city: "San Francisco", country: "USA" }, picture: { medium: "https://randomuser.me/api/portraits/men/1.jpg" } },
+        { name: { first: "Sarah", last: "Johnson" }, location: { city: "Portland", country: "USA" }, picture: { medium: "https://randomuser.me/api/portraits/women/2.jpg" } },
+        { name: { first: "Mike", last: "Wilson" }, location: { city: "Chicago", country: "USA" }, picture: { medium: "https://randomuser.me/api/portraits/men/3.jpg" } },
+        { name: { first: "Emma", last: "Brown" }, location: { city: "Philadelphia", country: "USA" }, picture: { medium: "https://randomuser.me/api/portraits/women/4.jpg" } },
+        { name: { first: "David", last: "Lee" }, location: { city: "Durham", country: "USA" }, picture: { medium: "https://randomuser.me/api/portraits/men/5.jpg" } },
+      ];
+      setReviews(staticReviews.slice(0, reviewCount));
     } finally {
-      setLoading(false);                       // Stop loading
+      setLoading(false);
     }
   };
 
-  // Professional review card renderer
-  const renderReviewCard = (person, index) => {
-    const coffeeShops = [
-      "Blue Bottle Coffee", "Stumptown Coffee", "Intelligentsia", "La Colombe",
-      "Counter Culture", "Ritual Coffee", "Heart Coffee", "Coava Coffee"
-    ];
-    const rating = (4 + Math.random()).toFixed(1);
-    const shopName = coffeeShops[index % coffeeShops.length];
+  useEffect(() => {
+    loadReviews();
+  }, [reviewCount]);
 
+  if (loading) {
     return (
-      <View key={index} style={styles.reviewCard}>
-        <Image
-          source={{ uri: person.picture.medium }}
-          style={styles.profileImage}
-        />
-        <View style={styles.reviewInfo}>
-          <Text style={styles.reviewerName}>
-            {person.name.first} {person.name.last}
-          </Text>
-          <View style={styles.shopContainer}>
-            <Ionicons 
-              name="cafe" 
-              size={14} 
-              color={Colors.primary.main} 
-            />
-            <Text style={styles.shopText}>{shopName}</Text>
-          </View>
-          <View style={styles.ratingContainer}>
-            <Ionicons 
-              name="star" 
-              size={16} 
-              color={Colors.warning.main} 
-            />
-            <Text style={styles.ratingText}>{rating}</Text>
-          </View>
-          <View style={styles.locationContainer}>
-            <Ionicons 
-              name="location-outline" 
-              size={14} 
-              color={Colors.text.secondary} 
-            />
-            <Text style={styles.locationText}>
-              {person.location.city}, {person.location.country}
-            </Text>
-          </View>
-        </View>
-        <View style={styles.reviewBadge}>
-          <Ionicons 
-            name="chatbubble" 
-            size={16} 
-            color={Colors.success.main} 
-          />
+      <View style={styles.container}>
+        <Text style={styles.title}>⭐ Coffee Reviews</Text>
+        <View style={styles.loadingContainer}>
+          <ActivityIndicator size="large" color={Colors.primary.main} />
+          <Text style={styles.loadingText}>Loading reviews...</Text>
         </View>
       </View>
     );
-  };
-
-  // useEffect hook runs side effects (like API calls)
-  useEffect(() => {
-    loadReviews();                               // Call loadReviews when component mounts
-  }, [amount]);                                // Re-run when 'amount' changes
+  }
 
   return (
-    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-      <View style={styles.container}>
-        {/* Professional header section */}
-        {/* Professional header */}
-        <View style={styles.header}>
-          <Text style={styles.title}>⭐ Coffee Reviews</Text>
-          <Text style={styles.subtitle}>
-            ☕ What coffee lovers are saying
-          </Text>
-        </View>        {/* Professional input section */}
-        <View style={styles.inputSection}>
-          <Text style={styles.inputLabel}>Number of reviews to load:</Text>
-          <View style={styles.inputContainer}>
-            <Ionicons 
-              name="chatbubbles-outline" 
-              size={20} 
-              color={Colors.neutral.gray500} 
-              style={styles.inputIcon}
-            />
-            <TextInput
-              style={styles.textInput}
-              placeholder="Enter number (leave empty for 5)"
-              value={amount ? amount.toString() : ''}
-              onChangeText={(text) => {
-                if (text === '') {
-                  setAmount(''); // Allow empty string
-                } else {
-                  const num = parseInt(text);
-                  if (!isNaN(num) && num > 0) {
-                    setAmount(num); // No upper limit
-                  }
-                }
-              }}
-              keyboardType="numeric"
-              maxLength={3}
-            />
-          </View>
-        </View>
-        
-        {/* Professional content section */}
-        <View style={styles.contentContainer}>
-          <View style={styles.listHeader}>
-            <Text style={styles.listTitle}>Reviews ({reviews.length})</Text>
-            {loading && (
-              <ActivityIndicator 
-                size="small" 
-                color={Colors.primary.main} 
-              />
-            )}
-          </View>
-          
-          {loading && reviews.length === 0 ? (
-            // Professional loading state
-            <View style={styles.loadingContainer}>
-              <ActivityIndicator 
-                size="large" 
-                color={Colors.primary.main} 
-              />
-              <Text style={styles.loadingText}>Loading reviews...</Text>
-            </View>
-          ) : msg ? (
-            // Professional error state
-            <View style={styles.errorContainer}>
-              <Ionicons 
-                name="alert-circle-outline" 
-                size={48} 
-                color={Colors.error.main} 
-              />
-              <Text style={styles.errorText}>{msg}</Text>
-            </View>
-          ) : (
-            // Professional review list
-            <ScrollView 
-              style={styles.scrollView}
-              contentContainerStyle={styles.scrollContent}
-              showsVerticalScrollIndicator={true}
-              nestedScrollEnabled={true}
+    <View style={styles.container}>
+      <Text style={styles.title}>⭐ Coffee Reviews</Text>
+      
+      {/* Count Selector */}
+      <View style={styles.countSelector}>
+        <Text style={styles.countLabel}>Show reviews:</Text>
+        <View style={styles.countOptions}>
+          {countOptions.map((count) => (
+            <TouchableOpacity
+              key={count}
+              style={[
+                styles.countButton,
+                reviewCount === count && styles.countButtonActive
+              ]}
+              onPress={() => setReviewCount(count)}
             >
-              {reviews.map((person, index) => renderReviewCard(person, index))}
-            </ScrollView>
-          )}
+              <Text style={[
+                styles.countButtonText,
+                reviewCount === count && styles.countButtonTextActive
+              ]}>
+                {count}
+              </Text>
+            </TouchableOpacity>
+          ))}
         </View>
-        
-        <StatusBar style="auto" />
       </View>
-    </TouchableWithoutFeedback>
+      
+      <ScrollView style={styles.scrollView}>
+        {reviews.map((person, index) => {
+          const rating = (4 + Math.random()).toFixed(1);
+          const shopName = COFFEE_SHOPS[index % COFFEE_SHOPS.length];
+          
+          return (
+            <View key={index} style={styles.reviewCard}>
+              <View style={styles.reviewHeader}>
+                <View style={styles.userInfo}>
+                  <Image 
+                    source={{ uri: person.picture?.medium || `https://randomuser.me/api/portraits/men/${index + 1}.jpg` }}
+                    style={styles.userAvatar}
+                  />
+                  <Text style={styles.reviewerName}>
+                    {person.name.first} {person.name.last}
+                  </Text>
+                </View>
+                <View style={styles.ratingContainer}>
+                  <Ionicons name="star" size={16} color={Colors.warning.main} />
+                  <Text style={styles.ratingText}>{rating}</Text>
+                </View>
+              </View>
+              <View style={styles.shopContainer}>
+                <Ionicons name="cafe" size={14} color={Colors.primary.main} />
+                <Text style={styles.shopText}>{shopName}</Text>
+              </View>
+              <View style={styles.locationContainer}>
+                <Ionicons name="location-outline" size={14} color={Colors.text.secondary} />
+                <Text style={styles.locationText}>
+                  {person.location.city}, {person.location.country}
+                </Text>
+              </View>
+            </View>
+          );
+        })}
+      </ScrollView>
+    </View>
   );
 }
 
@@ -203,71 +121,47 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.background.default,
-    paddingHorizontal: 20,
-  },
-  header: {
-    paddingVertical: 24,
-    alignItems: 'center',
+    padding: 16,
   },
   title: {
-    fontSize: Typography.fontSizes['2xl'],
-    fontWeight: Typography.fontWeights.bold,
-    color: Colors.text.primary,
-    marginBottom: 8,
-  },
-  subtitle: {
-    fontSize: Typography.fontSizes.base,
-    color: Colors.text.secondary,
+    ...Typography.h2,
     textAlign: 'center',
+    marginBottom: 20,
+    color: Colors.primary.main,
   },
-  inputSection: {
-    marginBottom: 24,
+  countSelector: {
+    marginBottom: 20,
   },
-  inputLabel: {
-    fontSize: Typography.fontSizes.sm,
-    fontWeight: Typography.fontWeights.medium,
+  countLabel: {
+    ...Typography.body2,
     color: Colors.text.primary,
     marginBottom: 8,
+    fontWeight: '500',
   },
-  inputContainer: {
+  countOptions: {
     flexDirection: 'row',
-    alignItems: 'center',
+    flexWrap: 'wrap',
+    gap: 8,
+  },
+  countButton: {
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+    borderRadius: 20,
     backgroundColor: Colors.background.paper,
-    borderRadius: 8,
     borderWidth: 1,
     borderColor: Colors.neutral.gray300,
-    paddingHorizontal: 16,
-    ...Shadows.small,
   },
-  inputIcon: {
-    marginRight: 12,
+  countButtonActive: {
+    backgroundColor: Colors.primary.main,
+    borderColor: Colors.primary.main,
   },
-  textInput: {
-    flex: 1,
-    height: 48,
-    fontSize: Typography.fontSizes.base,
+  countButtonText: {
+    ...Typography.body2,
     color: Colors.text.primary,
+    fontWeight: '500',
   },
-  contentContainer: {
-    flex: 1,
-    backgroundColor: Colors.background.paper,
-    borderRadius: 12,
-    padding: 16,
-    ...Shadows.medium,
-  },
-  listHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: 16,
-    paddingBottom: 12,
-    borderBottomWidth: 1,
-    borderBottomColor: Colors.neutral.gray200,
-  },
-  listTitle: {
-    fontSize: Typography.fontSizes.lg,
-    fontWeight: Typography.fontWeights.semibold,
-    color: Colors.text.primary,
+  countButtonTextActive: {
+    color: Colors.text.inverse,
   },
   loadingContainer: {
     flex: 1,
@@ -275,93 +169,71 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   loadingText: {
-    fontSize: Typography.fontSizes.base,
+    ...Typography.body2,
     color: Colors.text.secondary,
-    marginTop: 16,
-  },
-  errorContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  errorText: {
-    fontSize: Typography.fontSizes.base,
-    color: Colors.error.main,
-    textAlign: 'center',
-    marginTop: 16,
+    marginTop: 10,
   },
   scrollView: {
     flex: 1,
   },
-  scrollContent: {
-    paddingVertical: 8,
-    flexGrow: 1,
-  },
   reviewCard: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#FFF8E1', // Warm coffee cream
+    backgroundColor: Colors.background.paper,
     borderRadius: 12,
     padding: 16,
     marginBottom: 12,
     ...Shadows.small,
-    borderLeftWidth: 3,
-    borderLeftColor: Colors.primary.main, // Coffee brown
   },
-  profileImage: {
-    width: 60,
-    height: 60,
-    borderRadius: 30,
-    marginRight: 16,
-    borderWidth: 2,
-    borderColor: Colors.neutral.gray200,
+  reviewHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 8,
   },
-  reviewInfo: {
-    flex: 1,
-  },
-  reviewerName: {
-    fontSize: Typography.fontSizes.lg,
-    fontWeight: Typography.fontWeights.semibold,
-    color: Colors.text.primary,
-    marginBottom: 4,
-  },
-  shopContainer: {
+  userInfo: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 4,
+    flex: 1,
   },
-  shopText: {
-    fontSize: Typography.fontSizes.sm,
-    color: Colors.primary.main,
-    marginLeft: 4,
-    fontWeight: Typography.fontWeights.medium,
+  userAvatar: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    marginRight: 12,
+  },
+  reviewerName: {
+    ...Typography.body1,
+    color: Colors.text.primary,
+    fontWeight: '600',
+    flex: 1,
   },
   ratingContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 4,
   },
   ratingText: {
-    fontSize: Typography.fontSizes.xs,
+    ...Typography.body2,
     color: Colors.text.primary,
     marginLeft: 4,
-    fontWeight: Typography.fontWeights.medium,
+    fontWeight: '500',
+  },
+  shopContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 6,
+  },
+  shopText: {
+    ...Typography.body2,
+    color: Colors.primary.main,
+    marginLeft: 6,
+    fontWeight: '500',
   },
   locationContainer: {
     flexDirection: 'row',
     alignItems: 'center',
   },
   locationText: {
-    fontSize: Typography.fontSizes.xs,
+    ...Typography.caption,
     color: Colors.text.secondary,
-    marginLeft: 4,
-  },
-  reviewBadge: {
-    width: 32,
-    height: 32,
-    borderRadius: 16,
-    backgroundColor: Colors.primary.light, // Coffee cream
-    alignItems: 'center',
-    justifyContent: 'center',
+    marginLeft: 6,
   },
 });
