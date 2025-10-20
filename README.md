@@ -40,6 +40,8 @@ A React Native mobile application for discovering coffee shops, exploring coffee
 
 - **6 Main Screens**: Home, Coffee Shops, Map, Origin, Reviews, Settings
 - **2 Stack Screens**: About, User Profile
+- **Reusable Component Library**: 8 custom components (Card, IconBadge, SectionHeader, RatingDisplay, ListItem, LoadingState, EmptyState, ButtonComponent)
+- **Design Token System**: Centralized Colors, Typography, Spacing, BorderRadius, and Shadows
 - **Interactive Map**: Real-time location tracking with coffee shop markers using React Native Maps
 - **Favorites System**: Save favorite coffee shops with AsyncStorage (persistent data)
 - **Location Services**: Uses Expo Location to show current location and nearby shops
@@ -59,4 +61,20 @@ A React Native mobile application for discovering coffee shops, exploring coffee
 - **AsyncStorage** for data persistence
 - **Expo Linear Gradient** for beautiful gradients
 - **Expo Vector Icons** for iconography
-- **Custom Global Styling System** for consistent design
+- **Custom Component Library** with 8 reusable components
+- **Design Token System** (Colors, Typography, Spacing, BorderRadius, Shadows)
+
+## 🧩 Component Architecture
+
+The app uses a comprehensive component library for consistent UI:
+
+- **Card** - Reusable card containers with consistent styling
+- **IconBadge** - Circular icon containers with customizable backgrounds
+- **SectionHeader** - Section titles with optional icons
+- **RatingDisplay** - Star ratings with numeric scores
+- **ListItem** - Flexible list item rows with icons and content
+- **LoadingState** - Consistent loading indicators
+- **EmptyState** - Empty state messaging
+- **ButtonComponent** - Multi-variant button system (primary, secondary, outline, danger)
+
+All components follow the global design token system for consistency across the app.
