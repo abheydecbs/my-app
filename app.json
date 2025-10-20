@@ -3,6 +3,25 @@
     "name": "Coffee Connect",
     "slug": "coffee-connect",
     "version": "1.0.0",
-    "description": "Find the best local coffee shops and roasteries near you"
+    "description": "Find the best local coffee shops and roasteries near you",
+    "ios": {
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "This app uses your location to show nearby coffee shops on the map."
+      }
+    },
+    "android": {
+      "permissions": [
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_FINE_LOCATION"
+      ]
+    },
+    "plugins": [
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Allow Coffee Connect to use your location to show nearby coffee shops."
+        }
+      ]
+    ]
   }
 }

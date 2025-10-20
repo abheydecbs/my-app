@@ -1,9 +1,10 @@
 import React from 'react';
-import { StyleSheet, Text, View, ScrollView, Image } from 'react-native';
+import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { StatusBar } from 'expo-status-bar';
 import ButtonComponent from '../../components/ButtonComponent';
-import { Colors, Typography, Shadows } from '../../GlobalStyles';
+import { Colors, Typography, Spacing, BorderRadius, CommonStyles } from '../../GlobalStyles';
+import { Card, IconBadge, SectionHeader } from '../../components';
 
 export default function AboutScreen({ navigation }) {
   const appInfo = {
@@ -32,13 +33,8 @@ export default function AboutScreen({ navigation }) {
 
   const renderInfoCard = (title, content, icon) => {
     return (
-      <View style={styles.infoCard}>
-        <View style={styles.cardHeader}>
-          <View style={styles.cardIcon}>
-            <Ionicons name={icon} size={24} color={Colors.primary.main} />
-          </View>
-          <Text style={styles.cardTitle}>{title}</Text>
-        </View>
+      <Card style={styles.infoCard}>
+        <SectionHeader title={title} icon={icon} />
         <View style={styles.cardContent}>
           {Array.isArray(content) ? (
             content.map((item, index) => (
@@ -51,7 +47,7 @@ export default function AboutScreen({ navigation }) {
             <Text style={styles.cardText}>{content}</Text>
           )}
         </View>
-      </View>
+      </Card>
     );
   };
 
@@ -62,14 +58,12 @@ export default function AboutScreen({ navigation }) {
       showsVerticalScrollIndicator={false}
     >
       {/* App Header */}
-      <View style={styles.header}>
-        <View style={styles.appIcon}>
-          <Ionicons name="cafe" size={48} color={Colors.primary.main} />
-        </View>
+      <Card style={styles.header}>
+        <IconBadge icon="cafe" size={80} />
         <Text style={styles.appName}>{appInfo.name}</Text>
         <Text style={styles.version}>Version {appInfo.version} ({appInfo.buildNumber})</Text>
         <Text style={styles.developer}>Developed by {appInfo.developer}</Text>
-      </View>
+      </Card>
 
       {/* App Description */}
       {renderInfoCard('☕ About This App', appInfo.description, 'information-circle-outline')}
@@ -81,13 +75,8 @@ export default function AboutScreen({ navigation }) {
       {renderInfoCard('🛠 Built With', appInfo.technologies, 'code-slash-outline')}
 
       {/* Additional Info */}
-      <View style={styles.infoCard}>
-        <View style={styles.cardHeader}>
-          <View style={styles.cardIcon}>
-            <Ionicons name="calendar-outline" size={24} color={Colors.primary.main} />
-          </View>
-          <Text style={styles.cardTitle}>📅 Release Information</Text>
-        </View>
+      <Card style={styles.infoCard}>
+        <SectionHeader title="📅 Release Information" icon="calendar-outline" />
         <View style={styles.cardContent}>
           <View style={styles.infoRow}>
             <Text style={styles.infoLabel}>Release Date:</Text>
@@ -106,7 +95,7 @@ export default function AboutScreen({ navigation }) {
             <Text style={styles.infoValue}>Educational Use</Text>
           </View>
         </View>
-      </View>
+      </Card>
 
       {/* Back Button */}
       <View style={styles.buttonContainer}>
@@ -124,75 +113,36 @@ export default function AboutScreen({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: Colors.background.default,
-  },
-  scrollContent: {
-    paddingBottom: 32,
-  },
+  container: CommonStyles.container,
+  scrollContent: CommonStyles.scrollContent,
   header: {
     alignItems: 'center',
-    padding: 32,
-    backgroundColor: Colors.background.paper,
-    marginBottom: 16,
-  },
-  appIcon: {
-    width: 80,
-    height: 80,
-    borderRadius: 40,
-    backgroundColor: Colors.primary.light,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: 16,
-    ...Shadows.medium,
+    padding: Spacing.xl,
+    marginBottom: Spacing.md,
   },
   appName: {
     fontSize: Typography.fontSizes['2xl'],
     fontWeight: Typography.fontWeights.bold,
     color: Colors.text.primary,
     textAlign: 'center',
-    marginBottom: 8,
+    marginBottom: Spacing.xs,
   },
   version: {
     fontSize: Typography.fontSizes.lg,
     fontWeight: Typography.fontWeights.medium,
     color: Colors.primary.main,
-    marginBottom: 4,
+    marginBottom: Spacing.xs,
   },
   developer: {
     fontSize: Typography.fontSizes.base,
     color: Colors.text.secondary,
   },
   infoCard: {
-    backgroundColor: Colors.background.paper,
-    borderRadius: 16,
-    padding: 20,
-    marginHorizontal: 20,
-    marginBottom: 16,
-    ...Shadows.medium,
-  },
-  cardHeader: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 16,
-  },
-  cardIcon: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    backgroundColor: Colors.primary.light,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginRight: 12,
-  },
-  cardTitle: {
-    fontSize: Typography.fontSizes.lg,
-    fontWeight: Typography.fontWeights.semibold,
-    color: Colors.text.primary,
+    marginHorizontal: Spacing.lg,
+    padding: Spacing.lg,
   },
   cardContent: {
-    paddingLeft: 4,
+    paddingLeft: Spacing.xs,
   },
   cardText: {
     fontSize: Typography.fontSizes.base,
@@ -202,19 +152,19 @@ const styles = StyleSheet.create({
   listItem: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 8,
+    marginBottom: Spacing.xs,
   },
   listText: {
     fontSize: Typography.fontSizes.base,
     color: Colors.text.secondary,
-    marginLeft: 12,
+    marginLeft: Spacing.sm + 4,
     flex: 1,
   },
   infoRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingVertical: 8,
+    paddingVertical: Spacing.xs,
     borderBottomWidth: 1,
     borderBottomColor: Colors.neutral.gray200,
   },
@@ -228,7 +178,7 @@ const styles = StyleSheet.create({
     color: Colors.text.secondary,
   },
   buttonContainer: {
-    paddingHorizontal: 20,
-    paddingTop: 16,
+    paddingHorizontal: Spacing.lg,
+    paddingTop: Spacing.md,
   },
 });

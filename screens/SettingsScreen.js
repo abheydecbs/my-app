@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, Switch, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { Colors, Typography, Shadows } from '../GlobalStyles';
+import { Colors, Typography, Spacing, BorderRadius, CommonStyles } from '../GlobalStyles';
+import { Card, SectionHeader, IconBadge } from '../components';
 
 const SettingsScreen = ({ navigation }) => {
   // State for various settings
@@ -115,13 +116,7 @@ const SettingsScreen = ({ navigation }) => {
         disabled={item.type === 'toggle'}
         onPress={item.onPress || null}
       >
-        <View style={styles.settingIcon}>
-          <Ionicons 
-            name={item.icon} 
-            size={24} 
-            color={Colors.primary.main} 
-          />
-        </View>
+        <IconBadge icon={item.icon} size={40} />
         <View style={styles.settingContent}>
           <Text style={styles.settingTitle}>{item.title}</Text>
           <Text style={styles.settingSubtitle}>{item.subtitle}</Text>
@@ -153,10 +148,10 @@ const SettingsScreen = ({ navigation }) => {
   const renderSettingsSection = (section) => {
     return (
       <View key={section.id} style={styles.section}>
-        <Text style={styles.sectionTitle}>{section.title}</Text>
-        <View style={styles.sectionContent}>
+        <SectionHeader title={section.title} />
+        <Card style={styles.sectionContent}>
           {section.items.map(renderSettingItem)}
-        </View>
+        </Card>
       </View>
     );
   };
@@ -168,19 +163,13 @@ const SettingsScreen = ({ navigation }) => {
       showsVerticalScrollIndicator={false}
     >
       {/* Professional header section */}
-      <View style={styles.header}>
-        <View style={styles.headerIcon}>
-          <Ionicons 
-            name="settings" 
-            size={32} 
-            color={Colors.primary.main} 
-          />
-        </View>
+      <Card style={styles.header}>
+        <IconBadge icon="settings" size={64} />
         <Text style={styles.title}>⚙️ App Settings</Text>
         <Text style={styles.subtitle}>
           ☕ Customize your coffee app experience and preferences
         </Text>
-      </View>
+      </Card>
 
       {/* Settings sections */}
       <View style={styles.settingsContainer}>
@@ -199,33 +188,20 @@ const SettingsScreen = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: Colors.background.default,
-  },
+  container: CommonStyles.container,
   scrollContent: {
-    paddingBottom: 32,
+    paddingBottom: Spacing.xl,
   },
   header: {
-    padding: 24,
+    padding: Spacing.lg,
     alignItems: 'center',
-    backgroundColor: Colors.background.paper,
-    marginBottom: 16,
-  },
-  headerIcon: {
-    width: 64,
-    height: 64,
-    borderRadius: 32,
-    backgroundColor: Colors.primary.light,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: 16,
+    marginBottom: Spacing.md,
   },
   title: {
     fontSize: Typography.fontSizes['3xl'],
     fontWeight: Typography.fontWeights.bold,
     color: Colors.text.primary,
-    marginBottom: 8,
+    marginBottom: Spacing.xs,
     textAlign: 'center',
   },
   subtitle: {
@@ -233,54 +209,36 @@ const styles = StyleSheet.create({
     color: Colors.text.secondary,
     textAlign: 'center',
     lineHeight: 24,
-    paddingHorizontal: 20,
+    paddingHorizontal: Spacing.lg,
   },
   settingsContainer: {
-    paddingHorizontal: 20,
+    paddingHorizontal: Spacing.lg,
   },
   section: {
-    marginBottom: 24,
-  },
-  sectionTitle: {
-    fontSize: Typography.fontSizes.lg,
-    fontWeight: Typography.fontWeights.semibold,
-    color: Colors.text.primary,
-    marginBottom: 12,
-    paddingHorizontal: 4,
+    marginBottom: Spacing.lg,
   },
   sectionContent: {
-    backgroundColor: Colors.background.paper,
-    borderRadius: 12,
-    ...Shadows.small,
     borderWidth: 1,
     borderColor: Colors.neutral.gray200,
-    overflow: 'hidden', // To ensure rounded corners work with item backgrounds
+    overflow: 'hidden',
   },
   settingItem: {
     flexDirection: 'row',
     alignItems: 'center',
-    padding: 16,
+    padding: Spacing.md,
     borderBottomWidth: 1,
     borderBottomColor: Colors.neutral.gray200,
-    backgroundColor: '#FFF8E1', // Warm coffee cream
-  },
-  settingIcon: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    backgroundColor: Colors.primary.light,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginRight: 16,
+    backgroundColor: '#FFF8E1',
   },
   settingContent: {
     flex: 1,
+    marginLeft: Spacing.md,
   },
   settingTitle: {
     fontSize: Typography.fontSizes.base,
     fontWeight: Typography.fontWeights.semibold,
     color: Colors.text.primary,
-    marginBottom: 4,
+    marginBottom: Spacing.xs,
   },
   settingSubtitle: {
     fontSize: Typography.fontSizes.sm,
@@ -288,20 +246,20 @@ const styles = StyleSheet.create({
     lineHeight: 18,
   },
   settingAction: {
-    marginLeft: 16,
+    marginLeft: Spacing.md,
   },
   footer: {
-    padding: 24,
+    padding: Spacing.lg,
     alignItems: 'center',
     borderTopWidth: 1,
     borderTopColor: Colors.neutral.gray200,
-    marginTop: 16,
+    marginTop: Spacing.md,
   },
   footerText: {
     fontSize: Typography.fontSizes.sm,
     fontWeight: Typography.fontWeights.medium,
     color: Colors.text.primary,
-    marginBottom: 4,
+    marginBottom: Spacing.xs,
   },
   footerSubtext: {
     fontSize: Typography.fontSizes.xs,

@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, ScrollView, Image, TextInput, Switch } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, TextInput, Switch } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { StatusBar } from 'expo-status-bar';
 import ButtonComponent from '../../components/ButtonComponent';
-import { Colors, Typography, Shadows } from '../../GlobalStyles';
+import { Colors, Typography, Spacing, BorderRadius, CommonStyles } from '../../GlobalStyles';
+import { Card, IconBadge, SectionHeader } from '../../components';
 
 export default function UserProfileScreen({ navigation }) {
   // User profile state
@@ -24,11 +25,9 @@ export default function UserProfileScreen({ navigation }) {
 
   const renderProfileHeader = () => {
     return (
-      <View style={styles.header}>
+      <Card style={styles.header}>
         <View style={styles.profileImageContainer}>
-          <View style={styles.profileImage}>
-            <Ionicons name="person" size={48} color={Colors.primary.main} />
-          </View>
+          <IconBadge icon="person" size={100} />
           <View style={styles.statusIndicator}>
             <Ionicons name="checkmark-circle" size={20} color={Colors.success.main} />
           </View>
@@ -36,23 +35,18 @@ export default function UserProfileScreen({ navigation }) {
         <Text style={styles.userName}>☕ {profile.firstName} {profile.lastName}</Text>
         <Text style={styles.userEmail}>{profile.email}</Text>
         <Text style={styles.joinDate}>☕ Coffee lover since {profile.joinDate}</Text>
-      </View>
+      </Card>
     );
   };
 
   const renderInfoCard = (title, icon, children) => {
     return (
-      <View style={styles.infoCard}>
-        <View style={styles.cardHeader}>
-          <View style={styles.cardIcon}>
-            <Ionicons name={icon} size={24} color={Colors.primary.main} />
-          </View>
-          <Text style={styles.cardTitle}>{title}</Text>
-        </View>
+      <Card style={styles.infoCard}>
+        <SectionHeader title={title} icon={icon} />
         <View style={styles.cardContent}>
           {children}
         </View>
-      </View>
+      </Card>
     );
   };
 
@@ -164,38 +158,23 @@ export default function UserProfileScreen({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: Colors.background.default,
-  },
-  scrollContent: {
-    paddingBottom: 32,
-  },
+  container: CommonStyles.container,
+  scrollContent: CommonStyles.scrollContent,
   header: {
     alignItems: 'center',
-    padding: 32,
-    backgroundColor: Colors.background.paper,
-    marginBottom: 16,
+    padding: Spacing.xl,
+    marginBottom: Spacing.md,
   },
   profileImageContainer: {
     position: 'relative',
-    marginBottom: 16,
-  },
-  profileImage: {
-    width: 100,
-    height: 100,
-    borderRadius: 50,
-    backgroundColor: Colors.primary.light,
-    alignItems: 'center',
-    justifyContent: 'center',
-    ...Shadows.medium,
+    marginBottom: Spacing.md,
   },
   statusIndicator: {
     position: 'absolute',
     bottom: 5,
     right: 5,
     backgroundColor: Colors.background.paper,
-    borderRadius: 12,
+    borderRadius: BorderRadius.md,
     padding: 2,
   },
   userName: {
@@ -203,83 +182,49 @@ const styles = StyleSheet.create({
     fontWeight: Typography.fontWeights.bold,
     color: Colors.text.primary,
     textAlign: 'center',
-    marginBottom: 4,
+    marginBottom: Spacing.xs,
   },
   userEmail: {
     fontSize: Typography.fontSizes.base,
     color: Colors.text.secondary,
-    marginBottom: 4,
+    marginBottom: Spacing.xs,
   },
   joinDate: {
     fontSize: Typography.fontSizes.sm,
     color: Colors.text.secondary,
   },
   infoCard: {
-    backgroundColor: Colors.background.paper,
-    borderRadius: 16,
-    padding: 20,
-    marginHorizontal: 20,
-    marginBottom: 16,
-    ...Shadows.medium,
-  },
-  cardHeader: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 16,
-  },
-  cardIcon: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    backgroundColor: Colors.primary.light,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginRight: 12,
-  },
-  cardTitle: {
-    fontSize: Typography.fontSizes.lg,
-    fontWeight: Typography.fontWeights.semibold,
-    color: Colors.text.primary,
+    marginHorizontal: Spacing.lg,
+    padding: Spacing.lg,
   },
   cardContent: {
-    paddingLeft: 4,
+    paddingLeft: Spacing.xs,
   },
   fieldContainer: {
-    marginBottom: 16,
+    marginBottom: Spacing.md,
   },
-  fieldLabel: {
-    fontSize: Typography.fontSizes.sm,
-    fontWeight: Typography.fontWeights.medium,
-    color: Colors.text.primary,
-    marginBottom: 6,
-  },
+  fieldLabel: CommonStyles.inputLabel,
   fieldValue: {
     fontSize: Typography.fontSizes.base,
     color: Colors.text.secondary,
     lineHeight: 22,
   },
   textInput: {
-    backgroundColor: Colors.background.default,
-    borderRadius: 8,
-    borderWidth: 1,
+    ...CommonStyles.input,
     borderColor: Colors.neutral.gray300,
-    padding: 12,
-    fontSize: Typography.fontSizes.base,
-    color: Colors.text.primary,
   },
   bioInput: {
     height: 80,
     textAlignVertical: 'top',
   },
   toggleContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: 16,
+    ...CommonStyles.row,
+    ...CommonStyles.spaceBetween,
+    marginBottom: Spacing.md,
   },
   buttonContainer: {
-    paddingHorizontal: 20,
-    paddingTop: 16,
-    gap: 12,
+    paddingHorizontal: Spacing.lg,
+    paddingTop: Spacing.md,
+    gap: Spacing.sm + 4,
   },
 });

@@ -9,6 +9,7 @@ import CoffeeShopsScreen from './screens/CoffeeShopsScreen';
 import OriginScreen from './screens/OriginScreen';
 import ReviewsScreen from './screens/ReviewsScreen';
 import HomeScreen from './screens/HomeScreen';
+import MapScreen from './screens/MapScreen';
 import SettingsStackNavigator from './navigation/SettingsStackNavigator';
 
 // Import professional styling system
@@ -27,6 +28,9 @@ const getTabIcon = (routeName, focused, color, size) => {
       break;
     case 'Coffee Shops':
       iconName = focused ? 'cafe' : 'cafe-outline';
+      break;
+    case 'Map':
+      iconName = focused ? 'map' : 'map-outline';
       break;
     case 'Origin':
       iconName = focused ? 'business' : 'business-outline';
@@ -104,6 +108,15 @@ export default function App() {
           options={{
             tabBarLabel: 'Coffee Shops',
             headerTitle: 'Local Coffee Shops',
+          }}
+        />
+        {/* Map Tab - View coffee shops on an interactive map with location services */}
+        <Tab.Screen 
+          name="Map" 
+          component={MapScreen} 
+          options={{
+            tabBarLabel: 'Map',
+            headerTitle: 'Coffee Shop Map',
           }}
         />
         {/* Origin Tab - Find specialty coffee roasters in your area */}

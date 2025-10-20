@@ -17,9 +17,12 @@ const HomeScreen = () => {
         navigation.navigate('Coffee Shops');
         break;
       case 2:
-        navigation.navigate('Origin');
+        navigation.navigate('Map');
         break;
       case 3:
+        navigation.navigate('Origin');
+        break;
+      case 4:
         navigation.navigate('Reviews');
         break;
       default:
@@ -40,6 +43,15 @@ const HomeScreen = () => {
     },
     {
       id: 2,
+      title: "View Map",
+      description: "See coffee shops on an interactive map",
+      icon: "map",
+      gradient: ['#1976D2', '#0D47A1'], // Blue map colors
+      shadowColor: '#1976D2',
+      emoji: "🗺️"
+    },
+    {
+      id: 3,
       title: "Explore Origins",
       description: "Learn about coffee growing regions",
       icon: "leaf",
@@ -48,7 +60,7 @@ const HomeScreen = () => {
       emoji: "🌱"
     },
     {
-      id: 3,
+      id: 4,
       title: "Read Reviews",
       description: "See what other coffee lovers say",
       icon: "star",

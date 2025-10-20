@@ -1,8 +1,9 @@
-import { StyleSheet, Text, View, ScrollView, ActivityIndicator, TouchableOpacity, Image } from "react-native";
+import { StyleSheet, Text, View, ScrollView, TouchableOpacity, Image } from "react-native";
 import { useState, useEffect } from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { GET_REVIEWS_URL, COFFEE_SHOPS } from "../data/const";
-import { Colors, Typography, Shadows } from "../GlobalStyles";
+import { Colors, Typography, Spacing, BorderRadius, CommonStyles } from "../GlobalStyles";
+import { LoadingState, Card, RatingDisplay } from "../components";
 
 export default function ReviewsScreen() {
   const [reviews, setReviews] = useState([]);
@@ -41,10 +42,7 @@ export default function ReviewsScreen() {
     return (
       <View style={styles.container}>
         <Text style={styles.title}>⭐ Coffee Reviews</Text>
-        <View style={styles.loadingContainer}>
-          <ActivityIndicator size="large" color={Colors.primary.main} />
-          <Text style={styles.loadingText}>Loading reviews...</Text>
-        </View>
+        <LoadingState message="Loading reviews..." />
       </View>
     );
   }
@@ -80,10 +78,10 @@ export default function ReviewsScreen() {
       <ScrollView style={styles.scrollView}>
         {reviews.map((person, index) => {
           const rating = (4 + Math.random()).toFixed(1);
-          const shopName = COFFEE_SHOPS[index % COFFEE_SHOPS.length];
+          const shopName = COFFEE_SHOPS[index % COFFEE_SHOPS.length].name;
           
           return (
-            <View key={index} style={styles.reviewCard}>
+            <Card key={index} style={styles.reviewCard}>
               <View style={styles.reviewHeader}>
                 <View style={styles.userInfo}>
                   <Image 
@@ -94,10 +92,7 @@ export default function ReviewsScreen() {
                     {person.name.first} {person.name.last}
                   </Text>
                 </View>
-                <View style={styles.ratingContainer}>
-                  <Ionicons name="star" size={16} color={Colors.warning.main} />
-                  <Text style={styles.ratingText}>{rating}</Text>
-                </View>
+                <RatingDisplay rating={rating} starSize={16} />
               </View>
               <View style={styles.shopContainer}>
                 <Ionicons name="cafe" size={14} color={Colors.primary.main} />
@@ -109,7 +104,7 @@ export default function ReviewsScreen() {
                   {person.location.city}, {person.location.country}
                 </Text>
               </View>
-            </View>
+            </Card>
           );
         })}
       </ScrollView>
@@ -121,32 +116,33 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.background.default,
-    padding: 16,
+    padding: Spacing.md,
   },
   title: {
-    ...Typography.h2,
+    fontSize: Typography.fontSizes['2xl'],
+    fontWeight: Typography.fontWeights.bold,
     textAlign: 'center',
-    marginBottom: 20,
+    marginBottom: Spacing.lg,
     color: Colors.primary.main,
   },
   countSelector: {
-    marginBottom: 20,
+    marginBottom: Spacing.lg,
   },
   countLabel: {
-    ...Typography.body2,
+    fontSize: Typography.fontSizes.sm,
     color: Colors.text.primary,
-    marginBottom: 8,
-    fontWeight: '500',
+    marginBottom: Spacing.xs,
+    fontWeight: Typography.fontWeights.medium,
   },
   countOptions: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: 8,
+    gap: Spacing.xs,
   },
   countButton: {
-    paddingHorizontal: 16,
-    paddingVertical: 8,
-    borderRadius: 20,
+    paddingHorizontal: Spacing.md,
+    paddingVertical: Spacing.xs,
+    borderRadius: BorderRadius.full,
     backgroundColor: Colors.background.paper,
     borderWidth: 1,
     borderColor: Colors.neutral.gray300,
@@ -156,84 +152,55 @@ const styles = StyleSheet.create({
     borderColor: Colors.primary.main,
   },
   countButtonText: {
-    ...Typography.body2,
+    fontSize: Typography.fontSizes.sm,
     color: Colors.text.primary,
-    fontWeight: '500',
+    fontWeight: Typography.fontWeights.medium,
   },
   countButtonTextActive: {
     color: Colors.text.inverse,
-  },
-  loadingContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  loadingText: {
-    ...Typography.body2,
-    color: Colors.text.secondary,
-    marginTop: 10,
   },
   scrollView: {
     flex: 1,
   },
   reviewCard: {
-    backgroundColor: Colors.background.paper,
-    borderRadius: 12,
-    padding: 16,
-    marginBottom: 12,
-    ...Shadows.small,
+    padding: Spacing.md,
+    marginBottom: Spacing.sm + 4,
   },
   reviewHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: 8,
+    ...CommonStyles.row,
+    ...CommonStyles.spaceBetween,
+    marginBottom: Spacing.xs,
   },
   userInfo: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    ...CommonStyles.row,
     flex: 1,
   },
   userAvatar: {
     width: 40,
     height: 40,
-    borderRadius: 20,
-    marginRight: 12,
+    borderRadius: BorderRadius.full,
+    marginRight: Spacing.sm + 4,
   },
   reviewerName: {
-    ...Typography.body1,
+    fontSize: Typography.fontSizes.base,
     color: Colors.text.primary,
-    fontWeight: '600',
+    fontWeight: Typography.fontWeights.semibold,
     flex: 1,
   },
-  ratingContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  ratingText: {
-    ...Typography.body2,
-    color: Colors.text.primary,
-    marginLeft: 4,
-    fontWeight: '500',
-  },
   shopContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 6,
+    ...CommonStyles.row,
+    marginBottom: Spacing.xs - 2,
   },
   shopText: {
-    ...Typography.body2,
+    fontSize: Typography.fontSizes.sm,
     color: Colors.primary.main,
-    marginLeft: 6,
-    fontWeight: '500',
+    marginLeft: Spacing.xs - 2,
+    fontWeight: Typography.fontWeights.medium,
   },
-  locationContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
+  locationContainer: CommonStyles.row,
   locationText: {
-    ...Typography.caption,
+    fontSize: Typography.fontSizes.xs,
     color: Colors.text.secondary,
-    marginLeft: 6,
+    marginLeft: Spacing.xs - 2,
   },
 });

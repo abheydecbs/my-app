@@ -1,6 +1,6 @@
 import React from 'react';
 import { Pressable, Text, StyleSheet } from 'react-native';
-import { Colors, Typography, Shadows } from '../GlobalStyles';
+import { Colors, Typography, Shadows, Spacing, BorderRadius } from '../GlobalStyles';
 
 // Professional ButtonComponent with multiple variants and interactive states
 // Supports primary, secondary, outline, and danger button styles
@@ -100,23 +100,23 @@ const styles = StyleSheet.create({
   button: {
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: 8,
-    marginVertical: 8,
+    borderRadius: BorderRadius.md,
+    marginVertical: Spacing.xs,
     ...Shadows.small,
   },
   
   // Size variations
   buttonSmall: {
-    paddingVertical: 8,
-    paddingHorizontal: 16,
+    paddingVertical: Spacing.xs,
+    paddingHorizontal: Spacing.md,
   },
   buttonMedium: {
-    paddingVertical: 12,
-    paddingHorizontal: 24,
+    paddingVertical: Spacing.sm + 4,
+    paddingHorizontal: Spacing.lg,
   },
   buttonLarge: {
-    paddingVertical: 16,
-    paddingHorizontal: 32,
+    paddingVertical: Spacing.md,
+    paddingHorizontal: Spacing.xl,
   },
   buttonFullWidth: {
     width: '100%',
@@ -125,8 +125,8 @@ const styles = StyleSheet.create({
   // Primary variant (main brand color)
   buttonPrimary: {
     backgroundColor: Colors.primary.main,
-    paddingVertical: 12,
-    paddingHorizontal: 24,
+    paddingVertical: Spacing.sm + 4,
+    paddingHorizontal: Spacing.lg,
   },
   buttonPrimaryPressed: {
     backgroundColor: Colors.primary.dark,
@@ -138,8 +138,8 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.neutral.gray100,
     borderWidth: 1,
     borderColor: Colors.neutral.gray300,
-    paddingVertical: 12,
-    paddingHorizontal: 24,
+    paddingVertical: Spacing.sm + 4,
+    paddingHorizontal: Spacing.lg,
   },
   buttonSecondaryPressed: {
     backgroundColor: Colors.neutral.gray200,
@@ -151,8 +151,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     borderWidth: 2,
     borderColor: Colors.primary.main,
-    paddingVertical: 10,
-    paddingHorizontal: 22,
+    paddingVertical: Spacing.sm + 2,
+    paddingHorizontal: Spacing.lg - 2,
   },
   buttonOutlinePressed: {
     backgroundColor: Colors.primary.light,
@@ -162,8 +162,8 @@ const styles = StyleSheet.create({
   // Danger variant (for destructive actions)
   buttonDanger: {
     backgroundColor: Colors.error.main,
-    paddingVertical: 12,
-    paddingHorizontal: 24,
+    paddingVertical: Spacing.sm + 4,
+    paddingHorizontal: Spacing.lg,
   },
   buttonDangerPressed: {
     backgroundColor: Colors.error.dark,

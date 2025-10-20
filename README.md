@@ -1,4 +1,4 @@
-# Coffee Finder App ☕
+# Coffee Connect ☕
 
 A React Native mobile application for discovering coffee shops, exploring coffee origins, and reading reviews from fellow coffee enthusiasts.
 
@@ -6,7 +6,7 @@ A React Native mobile application for discovering coffee shops, exploring coffee
 
 **Watch the app demonstration**: [demo-video.mp4](./demo-video.mp4)
 
-##  Getting Started
+## 🚀 Getting Started
 
 ### Prerequisites
 - Node.js (v14 or higher)
@@ -38,29 +38,25 @@ A React Native mobile application for discovering coffee shops, exploring coffee
 
 ## 🎯 Features
 
-- **7 Screens**: Home, Coffee Shops, Origins, Reviews, Settings, About, User Profile
-- **API Integration**: Dynamic reviews with user avatars from randomuser.me
-- **Interactive Controls**: Customizable review count selector
-- **Navigation**: Tab and stack navigation with coffee-themed design
-- **Professional Styling**: Global design system with consistent theming
+- **6 Main Screens**: Home, Coffee Shops, Map, Origin, Reviews, Settings
+- **2 Stack Screens**: About, User Profile
+- **Interactive Map**: Real-time location tracking with coffee shop markers using React Native Maps
+- **Favorites System**: Save favorite coffee shops with AsyncStorage (persistent data)
+- **Location Services**: Uses Expo Location to show current location and nearby shops
+- **API Integration**: Dynamic reviews with user avatars from randomuser.me API
+- **Interactive Controls**: Customizable review count selector, map interactions, favorite buttons
+- **Navigation**: Bottom tab navigation and stack navigation with coffee-themed design
+- **Professional Styling**: Global design system with gradients, shadows, and consistent theming
+- **Data Persistence**: AsyncStorage for saving user preferences and favorites
+- **Quick Actions**: Home screen cards for easy navigation to main features
 
 ## 🛠 Built With
 
-- React Native with Expo
-- React Navigation
-- Expo Vector Icons
-- Custom styling system
-
-## � Assignment Compliance
-
-This app exceeds all requirements for INNT Assignment 1:
-- ✅ 3+ Views (7 screens)
-- ✅ 2+ Functional buttons (multiple interactive elements)
-- ✅ 3+ Screens (7 screens)
-- ✅ 1+ List (3 different lists)
-- ✅ Separate styling (GlobalStyles.js)
-- ✅ README with demo video
-
----
-
-*Individual submission for CBS Innovation and New Technology (INNT) Assignment 1*
+- **React Native** with Expo SDK 54
+- **React Navigation** (Bottom Tabs & Stack Navigator)
+- **React Native Maps** for interactive map features
+- **Expo Location** for GPS and location services
+- **AsyncStorage** for data persistence
+- **Expo Linear Gradient** for beautiful gradients
+- **Expo Vector Icons** for iconography
+- **Custom Global Styling System** for consistent design
